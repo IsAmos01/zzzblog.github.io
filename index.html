@@ -60,23 +60,81 @@
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/">八月目标</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">朱哥问题总结： 一、键盘打字太慢 二、git操作不够熟练 三、Linux系统操作需要熟练 四、mybatis源码需要掌握 五、Java需要从0-1进行掌握 六、服务架构需要仔细掌握 七、数据库的掌握
-八月计划： 第一周： 总目标：键盘打字、git操作、Java从0-2掌握、Linux系统的下载安装及操作 第二周： 总目标：数据库学习、mybatis源码分析、Java从2-4 第三周： 总目标：服务架构的了解、mybatis源码分析、Java丛4-6 第四周： 总目标：实践Java、git以及相关服务架构、mybatis源码分析</div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">朱哥问题总结： 键盘打字太慢 git操作不够熟练 Linux系统操作需要熟练 mybatis源码需要掌握 Java需要从0-1进行掌握 服务架构需要仔细掌握 数据库的掌握 八月计划： 第一周： ​	总目标：键盘打字、git操作、Java从0-2掌握、Linux系统的下载安装及操作
+第二周： ​	总目标：数据库学习、mybatis源码分析、Java从2-4
+第三周： ​	总目标：服务架构的了解、mybatis源码分析、Java丛4-6
+第四周： ​	总目标：实践Java、git以及相关服务架构、mybatis源码分析</div><div class="post-footer">
         <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content"></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
+当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
+如果队列满了,线程数达到最大线程数则会执行拒绝策略。
+当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
+二、五种实现 1、newSingleThreadExecutor()
+​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充
+2、newFixedThreadPool()
+​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。
+3、newCachedThreadPool()
+​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。
+4、newScheduledThreadPool()
+​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）
+三、七个核心参数 1、七个参数
+corePoolSize: 线程池核心线程个数
+workQueue:用于保存等待执行任务的阻塞队列
+maximunPoolSize: 线程池最大线程数量
+ThreadFactory: 创建线程的工厂
+RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略
+keeyAliveTime: 空闲线程存活时间
+TimeUnit: 存活时间单位
+2、CPU密集型
+​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；
+3、IO密集型
+​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。
+4、线程池大小= 最大线程数 + 阻塞队列大小
+5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。
+6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。
+四、四种策略 AbortPolicy（被拒绝了抛出异常）
+CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)
+DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)
+DiscardPolicy(默默丢弃、不抛异常)
+五、拒绝策略执行则么办？ 另外创建一个队列,当拒绝策略执行将任务放入队列。
+如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。
+其他情况要根据场景考虑 比如又些任务过期淘汰</div><div class="post-footer">
         <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/threadlocal/">ThreadLocal</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">ThreadLocal 一、WHAT
-​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。 ​	get():获取当前线程绑定的变量 ​	1.首先获取当前线程，根据当前线程获取一个Map ​	2.如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entry e，否则转到4； ​	3.如果e不为null，则返回e.value，否则转到4 ​	4.Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为key和value创建一个新的Map ​	set():将变量绑定到当前线程中 ​	1.首先获取当前线程，并根据当前线程获取一个Map ​	2.如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key） ​	3.如果Map为空，则给该线程创建Map，并设置初始值 ​	remove():移除当前线程绑定的局部变量，该方法可以帮助JVM进行GC ​	initialValue():返回当前线程局部变量的初始值
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
 1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
-二、WHY 1.每个线程需要有自己单独的实例 2.实力需要在多个方法中共享，但不希望被多线程共享</div><div class="post-footer">
+二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
+三、HOW get():获取当前线程绑定的变量
+首先获取当前线程，根据当前线程获取一个Map 如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entry e，否则转到4； 如果e不为null，则返回e.value，否则转到4 Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为key和value创建一个新的Map set():将变量绑定到当前线程中
+首先获取当前线程，并根据当前线程获取一个Map 如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key） 如果Map为空，则给该线程创建Map，并设置初始值 remove():移除当前线程绑定的局部变量，该方法可以帮助JVM进行GC
+initialValue():返回当前线程局部变量的初始值</div><div class="post-footer">
         <a href="/posts/threadlocal/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/hashmap/">HashMap</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content"></div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>xxxx</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">HashMap的结构及工作原理
+一、WHAT ​	HashMap是基于哈希表的Map接口的非同步实现，此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
+​	在Java中数组和链表是典型的数据存储结构。
+1.数组
+​	数组的存储区间连续，有点是随机访问性强，查找速度快，缺点是插入和删除速度快，内存利用率高且大小不固定，比较灵活，缺点是不能随机查找，查找速度慢。
+2.链表
+​	链表区间离散，优点是插入删除速度快，内存利用率高，大小不固定，比较灵活，缺点是不能随即查找，查找速度慢。
+3.HashMap
+​	哈希表也叫散列表，是一种神奇的结构，最大的特点就是快。在Java1.7之前是数组+链表，之后是数组+链表+红黑树。如果链表
+4.HashMap的节点
+​	HashMap是一个集合，键值对的集合，源码中每个节点用&lt;K、V&gt;表示。
+​	final int hash;
+​	final K key;
+​	V value;
+​	Node&lt;K,V&gt; next;
+​	Node是一个内部类，智利的key为键，value为值，next指向下一个元素，可以看出HashMap中的元素不是一个简单的键值对，还包含下一个元素的引用。
+二、WHY ​	在HashMap底层使用数组+链表+红黑树的结构完美的解决了数组和链表的问题，是的查询、插入、删除的效率都很高。
+​	在jdk1.8中，如果链表长度大于8且节点数组长度大于64时，则会将链表转为红黑树。
+三、HOW 1.put()方法
+将K、V封装到Node对象当中； 利用hashcode()方法得出k的hash值； 通过哈希函数将hash值转换为数组的下标； 如果下标没有任何元素，就把Node添加到这个位置，如果下标对应位置上有链表，就将k与链表上的每个节点进行equal，如果返回是false，那这个新的节点会被添加到末尾，吐过有一个返回true，则这个节点的value将会被覆盖。 2.get()方法
+先调用hashCode算法得出k的哈希值，并通过哈希算法转换为数组的下标； 通过数组下标快速定位到某个位置上，如果位置上什么都没有，就返回null； 如果这个位置上有单向链表，那么就将k与单向链表上的每个节点的k进行equal，吐过返回false，就返回null；如果返回true，则返回该节点value值。 </div><div class="post-footer">
         <a href="/posts/hashmap/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/first_post/">First_post</a>
