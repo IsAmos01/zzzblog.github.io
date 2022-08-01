@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>AMOS</title>
-    <link>http://example.org/</link>
-    <description>Recent content on AMOS</description>
+    <title>Please Call Me AMOS</title>
+    <link>https://example.com/</link>
+    <description>Recent content on Please Call Me AMOS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Sat, 30 Jul 2022 16:09:06 +0800</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 30 Jul 2022 16:09:06 +0800</lastBuildDate><atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>八月目标</title>
-      <link>http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</link>
+      <link>https://example.com/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</link>
       <pubDate>Sat, 30 Jul 2022 16:09:06 +0800</pubDate>
       
-      <guid>http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</guid>
+      <guid>https://example.com/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</guid>
       <description>问题总结： 键盘打字太慢 git操作不够熟练 Linux系统操作需要熟练 mybatis源码需要掌握 Java需要从0-1进行掌握 服务架构需要仔细掌握 数据库的掌握 八月计划： 第一周： ​	总目标：数据库学习、Java从0-2掌握、Linux系统的下载安装及操作
 第二周： ​	总目标：mybatis源码分析、Java从2-4
 第三周： ​	总目标：服务架构的了解、mybatis源码分析、Java丛4-6
@@ -21,10 +22,10 @@
     
     <item>
       <title>线程池</title>
-      <link>http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <link>https://example.com/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
       <pubDate>Sat, 30 Jul 2022 16:08:25 +0800</pubDate>
       
-      <guid>http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <guid>https://example.com/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
       <description>一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
 当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
 如果队列满了,线程数达到最大线程数则会执行拒绝策略。
@@ -63,10 +64,10 @@ DiscardPolicy(默默丢弃、不抛异常)
     
     <item>
       <title>ThreadLocal</title>
-      <link>http://example.org/posts/threadlocal/</link>
+      <link>https://example.com/posts/threadlocal/</link>
       <pubDate>Sat, 30 Jul 2022 16:07:36 +0800</pubDate>
       
-      <guid>http://example.org/posts/threadlocal/</guid>
+      <guid>https://example.com/posts/threadlocal/</guid>
       <description>ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
 1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
 二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
@@ -78,10 +79,10 @@ initialValue():返回当前线程局部变量的初始值</description>
     
     <item>
       <title>HashMap</title>
-      <link>http://example.org/posts/hashmap/</link>
+      <link>https://example.com/posts/hashmap/</link>
       <pubDate>Sat, 30 Jul 2022 16:06:47 +0800</pubDate>
       
-      <guid>http://example.org/posts/hashmap/</guid>
+      <guid>https://example.com/posts/hashmap/</guid>
       <description>HashMap的结构及工作原理
 一、WHAT ​	HashMap是基于哈希表的Map接口的非同步实现，此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
 ​	在Java中数组和链表是典型的数据存储结构。
@@ -107,10 +108,10 @@ initialValue():返回当前线程局部变量的初始值</description>
     
     <item>
       <title>First_post</title>
-      <link>http://example.org/posts/first_post/</link>
+      <link>https://example.com/posts/first_post/</link>
       <pubDate>Sat, 30 Jul 2022 15:02:18 +0800</pubDate>
       
-      <guid>http://example.org/posts/first_post/</guid>
+      <guid>https://example.com/posts/first_post/</guid>
       <description>hello world</description>
     </item>
     
