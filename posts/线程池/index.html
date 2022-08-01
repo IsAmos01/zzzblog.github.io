@@ -1,275 +1,187 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <title>线程池 - My New Hugo Site</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="线程池" />
-<meta property="og:description" content="一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
-当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
-如果队列满了,线程数达到最大线程数则会执行拒绝策略。
-当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
-二、五种实现 1、newSingleThreadExecutor()
-​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充
-2、newFixedThreadPool()
-​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。
-3、newCachedThreadPool()
-​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。
-4、newScheduledThreadPool()
-​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）
-三、七个核心参数 1、七个参数
-corePoolSize: 线程池核心线程个数
-workQueue:用于保存等待执行任务的阻塞队列
-maximunPoolSize: 线程池最大线程数量
-ThreadFactory: 创建线程的工厂
-RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略
-keeyAliveTime: 空闲线程存活时间
-TimeUnit: 存活时间单位
-2、CPU密集型
-​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；
-3、IO密集型
-​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。
-4、线程池大小= 最大线程数 &#43; 阻塞队列大小
-5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。
-6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。
-四、四种策略 AbortPolicy（被拒绝了抛出异常）
-CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)
-DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)
-DiscardPolicy(默默丢弃、不抛异常)
-五、拒绝策略执行则么办？ 另外创建一个队列,当拒绝策略执行将任务放入队列。
-如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。
-其他情况要根据场景考虑 比如又些任务过期淘汰" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-07-30T16:08:25+08:00" />
-<meta property="article:modified_time" content="2022-07-30T16:08:25+08:00" /><meta property="og:site_name" content="My cool site" />
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="线程池"/>
-<meta name="twitter:description" content="一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
-当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
-如果队列满了,线程数达到最大线程数则会执行拒绝策略。
-当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
-二、五种实现 1、newSingleThreadExecutor()
-​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充
-2、newFixedThreadPool()
-​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。
-3、newCachedThreadPool()
-​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。
-4、newScheduledThreadPool()
-​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）
-三、七个核心参数 1、七个参数
-corePoolSize: 线程池核心线程个数
-workQueue:用于保存等待执行任务的阻塞队列
-maximunPoolSize: 线程池最大线程数量
-ThreadFactory: 创建线程的工厂
-RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略
-keeyAliveTime: 空闲线程存活时间
-TimeUnit: 存活时间单位
-2、CPU密集型
-​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；
-3、IO密集型
-​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。
-4、线程池大小= 最大线程数 &#43; 阻塞队列大小
-5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。
-6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。
-四、四种策略 AbortPolicy（被拒绝了抛出异常）
-CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)
-DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)
-DiscardPolicy(默默丢弃、不抛异常)
-五、拒绝策略执行则么办？ 另外创建一个队列,当拒绝策略执行将任务放入队列。
-如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。
-其他情况要根据场景考虑 比如又些任务过期淘汰"/>
-<meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><link rel="prev" href="http://example.org/posts/threadlocal/" /><link rel="next" href="http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "线程池",
-        "inLanguage": "en",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "http:\/\/example.org\/posts\/%E7%BA%BF%E7%A8%8B%E6%B1%A0\/"
-        },"genre": "posts","wordcount":  59 ,
-        "url": "http:\/\/example.org\/posts\/%E7%BA%BF%E7%A8%8B%E6%B1%A0\/","datePublished": "2022-07-30T16:08:25+08:00","dateModified": "2022-07-30T16:08:25+08:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "gqiang"
-            },"description": ""
-    }
-    </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+        }
+    </style>
 
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="My New Hugo Site">My cool site</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="My New Hugo Site">My cool site</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
-    </div>
-</header><main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">线程池</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-30">2022-07-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;59 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#一线程池默认工作流程">一、线程池默认工作流程</a></li>
-    <li><a href="#二五种实现">二、五种实现</a></li>
-    <li><a href="#三七个核心参数">三、七个核心参数</a></li>
-    <li><a href="#四四种策略">四、四种策略</a></li>
-    <li><a href="#五拒绝策略执行则么办">五、拒绝策略执行则么办？</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="一线程池默认工作流程">一、线程池默认工作流程</h2>
-<ul>
-<li>
-<p>线程在有任务的时候会创建核心的线程数corePoolSize</p>
-</li>
-<li>
-<p>当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。</p>
-</li>
-<li>
-<p>如果队列满了,线程数达到最大线程数则会执行拒绝策略。</p>
-</li>
-<li>
-<p>当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。</p>
-</li>
-</ul>
-<h2 id="二五种实现">二、五种实现</h2>
-<p>1、newSingleThreadExecutor()</p>
-<p>​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充</p>
-<p>2、newFixedThreadPool()</p>
-<p>​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。</p>
-<p>3、newCachedThreadPool()</p>
-<p>​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。</p>
-<p>4、newScheduledThreadPool()</p>
-<p>​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）</p>
-<h2 id="三七个核心参数">三、七个核心参数</h2>
-<p>1、七个参数</p>
-<ul>
-<li>
-<p>corePoolSize: 线程池核心线程个数</p>
-</li>
-<li>
-<p>workQueue:用于保存等待执行任务的阻塞队列</p>
-</li>
-<li>
-<p>maximunPoolSize: 线程池最大线程数量</p>
-</li>
-<li>
-<p>ThreadFactory: 创建线程的工厂</p>
-</li>
-<li>
-<p>RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略</p>
-</li>
-<li>
-<p>keeyAliveTime: 空闲线程存活时间</p>
-</li>
-<li>
-<p>TimeUnit: 存活时间单位</p>
-</li>
-</ul>
-<p>2、CPU密集型</p>
-<p>​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；</p>
-<p>3、IO密集型</p>
-<p>​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。</p>
-<p>4、线程池大小= 最大线程数 + 阻塞队列大小</p>
-<p>5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。</p>
-<p>6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。</p>
-<h2 id="四四种策略">四、四种策略</h2>
-<ul>
-<li>
-<p>AbortPolicy（被拒绝了抛出异常）</p>
-</li>
-<li>
-<p>CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)</p>
-</li>
-<li>
-<p>DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)</p>
-</li>
-<li>
-<p>DiscardPolicy(默默丢弃、不抛异常)</p>
-</li>
-</ul>
-<h2 id="五拒绝策略执行则么办">五、拒绝策略执行则么办？</h2>
-<ul>
-<li>
-<p>另外创建一个队列,当拒绝策略执行将任务放入队列。</p>
-</li>
-<li>
-<p>如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。</p>
-</li>
-<li>
-<p>其他情况要根据场景考虑 比如又些任务过期淘汰</p>
-</li>
-</ul>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2022-07-30</span>
-            </div></div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-title="线程池"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-title="线程池"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-title="线程池"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" data-title="线程池"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
-            </div>
-        </div>
-    </div>
+    
+    
+    
+    
+    
+    
 
-    <div class="post-info-more">
-        <section class="post-tags"></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
+    
+    <title>线程池</title>
+    <meta name="description" content="Sky above, sand below and peace within">
+    <meta name="keywords" content='blog, gokarna, hugo'>
 
-    <div class="post-nav"><a href="/posts/threadlocal/" class="prev" rel="prev" title="ThreadLocal"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>ThreadLocal</a>
-            <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" class="next" rel="next" title="八月目标">八月目标<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-</article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">gqiang</a></span></div>
-        </div>
-    </footer></div>
+    <meta property="og:url" content="https://gokarna-hugo.netlify.app/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="线程池">
+    <meta property="og:description" content="Sky above, sand below and peace within">
+    <meta property="og:image" content="/images/avatar.webp">
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="线程池">
+    <meta name="twitter:description" content="Sky above, sand below and peace within">
+    <meta property="twitter:domain" content="https://gokarna-hugo.netlify.app/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+    <meta property="twitter:url" content="https://gokarna-hugo.netlify.app/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+    <meta name="twitter:image" content="/images/avatar.webp">
+
+    
+    <link rel="canonical" href="https://gokarna-hugo.netlify.app/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" />
+
+    <link rel="stylesheet" type="text/css" href="https://gokarna-hugo.netlify.app/css/normalize.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="https://gokarna-hugo.netlify.app/css/main.css">
+    <link disabled id="dark-theme" rel="stylesheet" href="https://gokarna-hugo.netlify.app/css/dark.css">
+
+    <script src="https://gokarna-hugo.netlify.app/js/svg-injector.min.js"></script>
+    <script src="https://gokarna-hugo.netlify.app/js/feather-icons.min.js"></script>
+    <script src="https://gokarna-hugo.netlify.app/js/main.js"></script>
+
+    
+    
+        <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+          // customised options
+          // • auto-render specific keys, e.g.:
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+          ],
+          // • rendering keys, e.g.:
+          throwOnError : false
+        });
+      });
+    </script>
+  
+    
+</head>
+<body>
+        <script type="text/javascript">
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+        <div class="avatar">
+            <a href="https://gokarna-hugo.netlify.app">
+                <img src="https://gokarna-hugo.netlify.app/images/avatar.webp" alt="avatar" />
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div>
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="https://gokarna-hugo.netlify.app">Gokarna</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="https://gokarna-hugo.netlify.app/"> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://gokarna-hugo.netlify.app/posts/"> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://gokarna-hugo.netlify.app/projects/"> Projects </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://gokarna-hugo.netlify.app/tags/"> Tags </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://github.com/526avijitgupta/gokarna"><span data-feather='github'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://www.buymeacoffee.com/avijitgupta"><span data-feather='coffee'></span>  </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="https://gokarna-hugo.netlify.app/index.xml"><span data-feather='rss'></span>  </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <a>
+                    <span id="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <a>
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="https://gokarna-hugo.netlify.app/"> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://gokarna-hugo.netlify.app/posts/"> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://gokarna-hugo.netlify.app/projects/"> Projects </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://gokarna-hugo.netlify.app/tags/"> Tags </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://github.com/526avijitgupta/gokarna"><span data-feather='github'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://www.buymeacoffee.com/avijitgupta"><span data-feather='coffee'></span>  </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="https://gokarna-hugo.netlify.app/index.xml"><span data-feather='rss'></span>  </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <a>
+                        <span id="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    
+
+    
+
+        </main><footer class="footer">
+    <span>&copy; 2022 The Marauders</span>
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/526avijitgupta/gokarna">Gokarna</a>
+    </span>
+</footer>
+</body>
 </html>

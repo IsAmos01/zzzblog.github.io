@@ -1,13 +1,30 @@
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    ><url>
-            <loc>http://example.org/</loc><lastmod>2022-07-30T16:09:06&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2022-07-30T16:09:06&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</loc><lastmod>2022-07-30T16:09:06&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc><lastmod>2022-07-30T16:08:25&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/threadlocal/</loc><lastmod>2022-07-30T16:07:36&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/hashmap/</loc><lastmod>2022-07-30T16:06:47&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/posts/first_post/</loc><lastmod>2022-07-30T15:02:18&#43;08:00</lastmod></url><url>
-            <loc>http://example.org/categories/</loc></url><url>
-            <loc>http://example.org/tags/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://gokarna-hugo.netlify.app/</loc>
+    <lastmod>2022-07-30T16:09:06+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/</loc>
+    <lastmod>2022-07-30T16:09:06+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</loc>
+    <lastmod>2022-07-30T16:09:06+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</loc>
+    <lastmod>2022-07-30T16:08:25+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/threadlocal/</loc>
+    <lastmod>2022-07-30T16:07:36+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/hashmap/</loc>
+    <lastmod>2022-07-30T16:06:47+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/posts/first_post/</loc>
+    <lastmod>2022-07-30T15:02:18+08:00</lastmod>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/categories/</loc>
+  </url><url>
+    <loc>https://gokarna-hugo.netlify.app/tags/</loc>
+  </url>
+</urlset>
