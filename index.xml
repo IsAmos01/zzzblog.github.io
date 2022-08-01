@@ -4,9 +4,19 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>gqiang9512@163.com (gqiang)</managingEditor>
-            <webMaster>gqiang9512@163.com (gqiang)</webMaster><lastBuildDate>Sat, 30 Jul 2022 16:09:06 &#43;0800</lastBuildDate>
+            <webMaster>gqiang9512@163.com (gqiang)</webMaster><lastBuildDate>Mon, 01 Aug 2022 09:17:28 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Git操作练习</title>
+    <link>http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/</link>
+    <pubDate>Mon, 01 Aug 2022 09:17:28 &#43;0800</pubDate>
+    <author>gqiang</author>
+    <guid>http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/</guid>
+    <description><![CDATA[一、本地仓库 本地第一次提交
+git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
+git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 ]]></description>
+</item>
+<item>
     <title>八月目标</title>
     <link>http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/</link>
     <pubDate>Sat, 30 Jul 2022 16:09:06 &#43;0800</pubDate>
