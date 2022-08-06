@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Tags - Tag - My New Hugo Site</title>
+        <title>Tags - Tag - Just Do It</title>
         <link>http://example.org/tags/</link>
-        <description>Tags - Tag - My New Hugo Site</description>
+        <description>Tags - Tag - Just Do It</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>gqiang9512@163.com (gqiang)</managingEditor>
             <webMaster>gqiang9512@163.com (gqiang)</webMaster><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /></channel>
 </rss>
