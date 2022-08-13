@@ -230,8 +230,8 @@ initialValue():返回当前线程局部变量的初始值]]></description>
     <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>gqiang</author>
     <guid>http://example.org/posts/sql%E8%AF%AD%E8%A8%80/</guid>
-    <description><![CDATA[title: &ldquo;SQL语言&rdquo; date: 2022-08-09T15:00:15+08:00 draft: true
-SQL语言 一、SQL基础 1.SELECT SELECT column_name,column_name FROM table_name;
+    <description><![CDATA[title: &ldquo;SQL语言&rdquo; date: 2022-08-09T15:00:15+08:00 draft: false
+SQL语言(未完待续) 一、SQL基础 1.SELECT SELECT column_name,column_name FROM table_name;
 SELECT * FROM table_name;
 SELECT DISTINCT column_name,column_name FROM table_name; 返回列中不同的值
 2.WHERE SELECT column_name,column_name FROM table_name WHERE column_name operator value;
