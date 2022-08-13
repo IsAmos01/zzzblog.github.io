@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>线程池 - Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="线程池" />
-<meta property="og:description" content="一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
+<meta property="og:description" content="学习计划之04线程池 一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
 当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
 如果队列满了,线程数达到最大线程数则会执行拒绝策略。
 当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
@@ -46,7 +46,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="线程池"/>
-<meta name="twitter:description" content="一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
+<meta name="twitter:description" content="学习计划之04线程池 一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
 当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
 如果队列满了,线程数达到最大线程数则会执行拒绝策略。
 当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
@@ -83,7 +83,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 <meta name="application-name" content="Amos&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="Amos&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><link rel="prev" href="http://example.org/posts/threadlocal/" /><link rel="next" href="http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><link rel="prev" href="http://example.org/posts/threadlocal/" /><link rel="next" href="http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -94,7 +94,7 @@ DiscardPolicy(默默丢弃、不抛异常)
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/%E7%BA%BF%E7%A8%8B%E6%B1%A0\/"
-        },"genre": "posts","wordcount":  59 ,
+        },"genre": "posts","wordcount":  60 ,
         "url": "http:\/\/example.org\/posts\/%E7%BA%BF%E7%A8%8B%E6%B1%A0\/","datePublished": "2022-07-30T16:08:25+08:00","dateModified": "2022-07-30T16:08:25+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -136,7 +136,7 @@ DiscardPolicy(默默丢弃、不抛异常)
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">线程池</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-30">2022-07-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;59 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-07-30">2022-07-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;60 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -145,14 +145,19 @@ DiscardPolicy(默默丢弃、不抛异常)
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一线程池默认工作流程">一、线程池默认工作流程</a></li>
-    <li><a href="#二五种实现">二、五种实现</a></li>
-    <li><a href="#三七个核心参数">三、七个核心参数</a></li>
-    <li><a href="#四四种策略">四、四种策略</a></li>
-    <li><a href="#五拒绝策略执行则么办">五、拒绝策略执行则么办？</a></li>
+    <li><a href="#学习计划之04线程池">学习计划之04线程池</a>
+      <ul>
+        <li><a href="#一线程池默认工作流程">一、线程池默认工作流程</a></li>
+        <li><a href="#二五种实现">二、五种实现</a></li>
+        <li><a href="#三七个核心参数">三、七个核心参数</a></li>
+        <li><a href="#四四种策略">四、四种策略</a></li>
+        <li><a href="#五拒绝策略执行则么办">五、拒绝策略执行则么办？</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="一线程池默认工作流程">一、线程池默认工作流程</h2>
+            </div><div class="content" id="content"><h2 id="学习计划之04线程池">学习计划之04线程池</h2>
+<h3 id="一线程池默认工作流程">一、线程池默认工作流程</h3>
 <ul>
 <li>
 <p>线程在有任务的时候会创建核心的线程数corePoolSize</p>
@@ -167,7 +172,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 <p>当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。</p>
 </li>
 </ul>
-<h2 id="二五种实现">二、五种实现</h2>
+<h3 id="二五种实现">二、五种实现</h3>
 <p>1、newSingleThreadExecutor()</p>
 <p>​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充</p>
 <p>2、newFixedThreadPool()</p>
@@ -176,7 +181,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 <p>​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。</p>
 <p>4、newScheduledThreadPool()</p>
 <p>​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）</p>
-<h2 id="三七个核心参数">三、七个核心参数</h2>
+<h3 id="三七个核心参数">三、七个核心参数</h3>
 <p>1、七个参数</p>
 <ul>
 <li>
@@ -208,7 +213,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 <p>4、线程池大小= 最大线程数 + 阻塞队列大小</p>
 <p>5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。</p>
 <p>6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。</p>
-<h2 id="四四种策略">四、四种策略</h2>
+<h3 id="四四种策略">四、四种策略</h3>
 <ul>
 <li>
 <p>AbortPolicy（被拒绝了抛出异常）</p>
@@ -223,7 +228,7 @@ DiscardPolicy(默默丢弃、不抛异常)
 <p>DiscardPolicy(默默丢弃、不抛异常)</p>
 </li>
 </ul>
-<h2 id="五拒绝策略执行则么办">五、拒绝策略执行则么办？</h2>
+<h3 id="五拒绝策略执行则么办">五、拒绝策略执行则么办？</h3>
 <ul>
 <li>
 <p>另外创建一个队列,当拒绝策略执行将任务放入队列。</p>
@@ -257,7 +262,7 @@ DiscardPolicy(默默丢弃、不抛异常)
     </div>
 
     <div class="post-nav"><a href="/posts/threadlocal/" class="prev" rel="prev" title="ThreadLocal"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>ThreadLocal</a>
-            <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" class="next" rel="next" title="八月目标">八月目标<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/" class="next" rel="next" title="Git操作练习">Git操作练习<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">

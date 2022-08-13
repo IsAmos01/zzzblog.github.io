@@ -59,30 +59,128 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/jdbc/">JDBC</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-09">2022-08-09</time></span></div><div class="content">学习计划之06JDBC学习 一、简介 ​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。
+​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。
+​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。
+二、快速入门 步骤 创建工程，导入驱动的jar包
+mysql-connector-java-5.1.48.jar
+注册驱动
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+获取连接
+Connection conn = DriverManager.getConnection(url, username, password);
+定义SQL语句
+String sql = &quot;updata ...&quot;;
+获取执行SQL对象
+Statement stmt = conn.createStatement();
+执行SQL
+stmt.executeUpdata(sql);
+处理返回结果
+释放资源
+三、JDBC API详解 1.DriverManager 驱动管理类 static Connection
+getConnection(String url, String user, String password)
+​	url:连接路径
+​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;
+​	示例：jdbc:mysql:127.0.0.1:3306/db1
+​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对
+​	user:用户名
+​	password:密码
+2.Connection 2.1获取执行SQL的对象
+普通执行SQL对象 statement createStatement()
+预编译SQL的执行对象：防止SQL注入 PreparedStatement prepareStatement(sql)</div><div class="post-footer">
+        <a href="/posts/jdbc/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">数据库学习</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-08">2022-08-08</time></span></div><div class="content">学习计划之05数据库 一、数据模型及数据库系统结构 1.层次模型
+特点：
+有且只有一个节点没有双亲节点，这个节点成为根节点； 根以外的其他节点有且只有一个双亲节点。 层次模型像一棵倒立的树，结点的双亲是唯一的。
+优点：结构清晰；查询效率高；有良好的完整性支撑； 缺点：层次模型无法处理多对多的关系；无法处理一个结点有多个双亲节点的情况； 2 网状模型
+特点：
+允许一个以上的系欸但无双亲； 一个节点可以有多于一个的双亲。 网状模型的优缺点：
+优点：
+结点之间的联系可以有很多； 具有良好的性能，存取效率较高。 缺点：
+结构比较复杂，当应用环境扩大，数据库的结构变得越来越复杂； 网状模型的DDL、DML复杂，并且要嵌入到某一种高级语言中，不好掌握，不容易使用； 应用程序在访问数据时必须选择适当的存取路径，因此必须了解系统结构的细节，加重了编写应用程序的负担。 3 关系模型
+​	关系数据库是目前使用最广泛的数据库，其采用关系模型作为数据的组织方式。
+关系：通常对应一张”表“； 元组：一行数据即为一个元组； 属性：表中的一列为一个属性； 码：通过码可以唯一确定一个元组； 域：具有相同数据类型的值的集合； 分量：元组中的一个属性值； ​	关系的操作包括查询、插入、删除和更新数据；关系的完成行约束包括三大类：实体完整性、参照完整性和用户定义的完整性。
+4 数据库系统的三级模式结构
+外模式：也称子模式或用户模式，是数据库用户（包括程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图。一个数据库可以有多个外模式。 模式：也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。不涉及物理存储细节和硬件环境，也不与具体的应用程序、开发工具及程序设计语言有关。一个数据库只有一个模式。 内模式：也称存储模式，是物理结构和存储方式的描述，是数据在数据库内部的组织方式。 二、关系数据库 1.关系数据库结构及形式化定义
+关系
+​	关系模型的数据结构就是——关系，在用户看来就是一张二维表。关系模型是建立在集合代数的基础上的，因此这里丛集合论的角度给出关系话数据结构的一些定义。
+（1）域：具有相同数据类型的值的结合。
+（2）笛卡尔积：域上的一种集合运算。
+举例：
+D1 = {张， 王}；D2 = {计算机， 测绘}； D3 = {陕西， 北京， 安徽}
+则D1，D2，D3的笛卡尔积为
+D1✖D2✖D3 =
+{ （张， 计算机， 陕西）， （张， 计算机， 北京），（张， 计算机， 安徽），</div><div class="post-footer">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">学习计划</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-06">2022-08-06</time></span></div><div class="content">学习计划 八月（8.1~8.28） 第一周： 周一：git基础操作练习，Java基础 周二：Java基础语法、异常处理、面向对象等、SQL语法等 周三：Java（集合框架、网络编程、多线程等）、SQL函数及回顾 周四：制定学习计划 周五：制定计划+Java基础（关键字、变量、标识符、运算符。判断与循环） 第二周： 周一：数据库学习；制定项目计划+生成项目数据库表 周二：JDBC；在项目中建立连接操作的文件 周三：Java面向对象（第4，5，6章） 周四：面向对象+泛型+异常处理；项目中增删改查等操作的集成 周五：集合（第9章）；将集合应用到项目当中 周六：集合学习（第九章）+一周总结 第三周： 周一：基本的设计模式学习 周二：mybatis源码学习路线制定+每日总结 周三、四、五：mybatis源码学习 第四周： 周一：spring boot学习+工具链 周二、三、四、五：spring boot+mybatis结合到项目中 九月 第一周： 周一：网络编程（socket，TCP/IP)；在项目中增加TCP操作 周二：网络编程（socket，TCP/IP)；在项目中增加TCP操作 周三：数据库（设计、结构、安全等） 周四：数据库（设计、结构、安全等） 周五：数据结构与算法（图和查找排序算法等） 第二周： 周一：数据结构与算法（图和查找排序算法等） 周二：数据结构与算法（图和查找排序算法等） 周三：spring boot+spring学习 周四：spring boot+spring学习 周五：基于spring boot对项目进行优化 第三周：（每日刷题） 总结回归，对项目进行版本迭代 第四周（每日刷题） 多线程（并发）；对数据库操作等线程进行优化管理 十月 第一周：
-​	中间件和缓存
-第二周：
-第三周
-第四周</div><div class="post-footer">
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-06">2022-08-06</time></span></div><div class="content">学习计划 八月（8.1~8.28） 第一周： 周一：git基础操作练习，Java基础 周二：Java基础语法、异常处理、面向对象等、SQL语法等 周三：Java（集合框架、网络编程、多线程等）、SQL函数及回顾 周四：制定学习计划 周五：制定计划+Java基础（关键字、变量、标识符、运算符。判断与循环） 第二周： 周一：
+学习数据库基础设计；
+输出：制定项目计划，生成项目的基础数据库表
+实践情况：完成
+周二：
+JDBC，跑通部分部门的业务代码；
+输出：下载部门业务代码，布置环境；创建项目实体类；
+实践情况：完成
+周三：
+JDBC学习；熟悉业务代码内容；
+输出：JDBC练习，项目中加入JDBC代码
+实践情况：未完成，代码调试中~
+周四：
+Java面向对象（第4，5，6章）+泛型+异常处理
+输出：完善项目
+实践情况：未完成~
+周五：
+集合（第9章）；
+输出：集合知识总结
+实践情况：未完成
+周六：
+输出：一周总结
+实践情况：完成，并进行面向对象的学习
+第三周： 周一：
+集合知识学习
+输出：集合知识总结，完成在控制台的登陆、注册、退出等功能；
+周二：
+基本的设计模式学习
+输出：对基本的设计模式进行文字总结；在控制台完成管理员的查询、修改、删除、增加等功能
+周三：
+mybatis初步学习了解
+输出：mybatis源码学习路线制定；在控制台完成管理员的查询、修改、删除、增加等功能
+周四、五、六：
+mybatis源码学习
+输出：mybatis个人理解总结；在控制台完成员工和菜单的查询、修改、删除、增加等功能
+第四周： 周一、周二
+mybatis源码学习
+输出：mybatis个人理解总结
+周三：
+spring boot学习
+输出：了解spring boot的基本概念和使用，并做总结
+周四、五：
+输出：利用对mybatis的了解，修改项目中的数据库操作的相关代码
+九月 第一周： 周一：
+网络编程（socket，TCP/IP)；
+输出：文字总结，并进行demo练习（主要还没想清楚怎么将这部分内容结合到项目中如果学到这部分的时候没有合适的输出，就做一个小的demo操作练习）
+周二：
+网络编程（socket，TCP/IP)；
+输出：文字总结，并进行demo练习
+周三：
+数据库（设计、结构、安全等）
+输出：文字总结，优化项目数据库（主要修正数据库表是否符合规范，有没有不合理的地方）
+周四：
+数据结构与算法（图和查找排序算法等）
+输出：文字总结并练习</div><div class="post-footer">
         <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/">Git操作练习</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span></div><div class="content">一、本地仓库 本地第一次提交
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span></div><div class="content">学习计划之01Git 一、本地仓库 本地第一次提交
 git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
 git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 </div><div class="post-footer">
         <a href="/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/">八月目标</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">问题总结： 键盘打字太慢 git操作不够熟练 Linux系统操作需要熟练 mybatis源码需要掌握 Java需要从0-1进行掌握 服务架构需要仔细掌握 数据库的掌握 八月计划： 第一周： ​	总目标：数据库学习、Linux系统的下载安装及操作、Java基础、面向对象
-具体实施：
-周一：git基础操作练习，Java基础； 周二：Java基础语法、IO、异常处理、面向对象等，MySQL语法（增删改查、多表查询等）； 周三：Java（集合框架、网络编程、多线程等）、MySQL函数及回顾 周四：实践练习 周五：实践练习 第二周： ​	总目标：mybatis源码分析、Java数据结构基础以及实战练习
-第三周： ​	总目标：服务架构的了解、mybatis源码分析
-第四周： ​	总目标：实操</div><div class="post-footer">
-        <a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">学习计划之04线程池 一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
 当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
 如果队列满了,线程数达到最大线程数则会执行拒绝策略。
 当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
@@ -119,7 +217,7 @@ DiscardPolicy(默默丢弃、不抛异常)
         <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Read More</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/threadlocal/">ThreadLocal</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">学习计划之03ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
 1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
 二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
 三、HOW get():获取当前线程绑定的变量
@@ -127,30 +225,6 @@ DiscardPolicy(默默丢弃、不抛异常)
 首先获取当前线程，并根据当前线程获取一个Map 如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key） 如果Map为空，则给该线程创建Map，并设置初始值 remove():移除当前线程绑定的局部变量，该方法可以帮助JVM进行GC
 initialValue():返回当前线程局部变量的初始值</div><div class="post-footer">
         <a href="/posts/threadlocal/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/hashmap/">HashMap</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">HashMap的结构及工作原理
-一、WHAT ​	HashMap是基于哈希表的Map接口的非同步实现，此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
-​	在Java中数组和链表是典型的数据存储结构。
-1.数组
-​	数组的存储区间连续，有点是随机访问性强，查找速度快，缺点是插入和删除速度快，内存利用率高且大小不固定，比较灵活，缺点是不能随机查找，查找速度慢。
-2.链表
-​	链表区间离散，优点是插入删除速度快，内存利用率高，大小不固定，比较灵活，缺点是不能随即查找，查找速度慢。
-3.HashMap
-​	哈希表也叫散列表，是一种神奇的结构，最大的特点就是快。在Java1.7之前是数组+链表，之后是数组+链表+红黑树。如果链表
-4.HashMap的节点
-​	HashMap是一个集合，键值对的集合，源码中每个节点用&lt;K、V&gt;表示。
-​	final int hash;
-​	final K key;
-​	V value;
-​	Node&lt;K,V&gt; next;
-​	Node是一个内部类，智利的key为键，value为值，next指向下一个元素，可以看出HashMap中的元素不是一个简单的键值对，还包含下一个元素的引用。
-二、WHY ​	在HashMap底层使用数组+链表+红黑树的结构完美的解决了数组和链表的问题，是的查询、插入、删除的效率都很高。
-​	在jdk1.8中，如果链表长度大于8且节点数组长度大于64时，则会将链表转为红黑树。
-三、HOW 1.put()方法
-将K、V封装到Node对象当中； 利用hashcode()方法得出k的hash值； 通过哈希函数将hash值转换为数组的下标； 如果下标没有任何元素，就把Node添加到这个位置，如果下标对应位置上有链表，就将k与链表上的每个节点进行equal，如果返回是false，那这个新的节点会被添加到末尾，吐过有一个返回true，则这个节点的value将会被覆盖。 2.get()方法
-先调用hashCode算法得出k的哈希值，并通过哈希算法转换为数组的下标； 通过数组下标快速定位到某个位置上，如果位置上什么都没有，就返回null； 如果这个位置上有单向链表，那么就将k与单向链表上的每个节点的k进行equal，吐过返回false，就返回null；如果返回true，则返回该节点value值。 </div><div class="post-footer">
-        <a href="/posts/hashmap/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item active">
                     <span class="page-link">
                         <a href="/">1</a>

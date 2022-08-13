@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>JDBC - Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="JDBC" />
+<meta property="og:description" content="学习计划之06JDBC学习 一、简介 ​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。
+​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。
+​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。
+二、快速入门 步骤 创建工程，导入驱动的jar包
+mysql-connector-java-5.1.48.jar
+注册驱动
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+获取连接
+Connection conn = DriverManager.getConnection(url, username, password);
+定义SQL语句
+String sql = &quot;updata ...&quot;;
+获取执行SQL对象
+Statement stmt = conn.createStatement();
+执行SQL
+stmt.executeUpdata(sql);
+处理返回结果
+释放资源
+三、JDBC API详解 1.DriverManager 驱动管理类 static Connection
+getConnection(String url, String user, String password)
+​	url:连接路径
+​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;
+​	示例：jdbc:mysql:127.0.0.1:3306/db1
+​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对
+​	user:用户名
+​	password:密码
+2.Connection 2.1获取执行SQL的对象
+普通执行SQL对象 statement createStatement()
+预编译SQL的执行对象：防止SQL注入 PreparedStatement prepareStatement(sql)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/jdbc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-09T15:00:15+08:00" />
+<meta property="article:modified_time" content="2022-08-09T15:00:15+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JDBC"/>
+<meta name="twitter:description" content="学习计划之06JDBC学习 一、简介 ​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。
+​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。
+​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。
+二、快速入门 步骤 创建工程，导入驱动的jar包
+mysql-connector-java-5.1.48.jar
+注册驱动
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+获取连接
+Connection conn = DriverManager.getConnection(url, username, password);
+定义SQL语句
+String sql = &quot;updata ...&quot;;
+获取执行SQL对象
+Statement stmt = conn.createStatement();
+执行SQL
+stmt.executeUpdata(sql);
+处理返回结果
+释放资源
+三、JDBC API详解 1.DriverManager 驱动管理类 static Connection
+getConnection(String url, String user, String password)
+​	url:连接路径
+​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;
+​	示例：jdbc:mysql:127.0.0.1:3306/db1
+​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对
+​	user:用户名
+​	password:密码
+2.Connection 2.1获取执行SQL的对象
+普通执行SQL对象 statement createStatement()
+预编译SQL的执行对象：防止SQL注入 PreparedStatement prepareStatement(sql)"/>
+<meta name="application-name" content="Amos&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Amos&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/jdbc/" /><link rel="prev" href="http://example.org/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "JDBC",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/jdbc\/"
+        },"genre": "posts","wordcount":  196 ,
+        "url": "http:\/\/example.org\/posts\/jdbc\/","datePublished": "2022-08-09T15:00:15+08:00","dateModified": "2022-08-09T15:00:15+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "gqiang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Just Do It">Amos&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Just Do It">Amos&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">JDBC</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-09">2022-08-09</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;196 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一简介">一、简介</a></li>
+    <li><a href="#二快速入门">二、快速入门</a>
+      <ul>
+        <li><a href="#步骤">步骤</a></li>
+      </ul>
+    </li>
+    <li><a href="#三jdbc-api详解">三、JDBC API详解</a>
+      <ul>
+        <li><a href="#1drivermanager-驱动管理类">1.DriverManager 驱动管理类</a></li>
+        <li><a href="#2connection">2.Connection</a></li>
+        <li><a href="#3statement">3.Statement</a></li>
+        <li><a href="#4resutset结果集对象">4.ResutSet（结果集对象）</a></li>
+        <li><a href="#5preparedstatement">5.PreparedStatement</a></li>
+      </ul>
+    </li>
+    <li><a href="#四数据库连接池">四、数据库连接池</a>
+      <ul>
+        <li><a href="#1实现">1.实现</a></li>
+        <li><a href="#2使用步骤">2.使用步骤</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="学习计划之06jdbc学习">学习计划之06JDBC学习</h1>
+<h2 id="一简介">一、简介</h2>
+<p>​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。</p>
+<p>​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。</p>
+<p>​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。</p>
+<h2 id="二快速入门">二、快速入门</h2>
+<h3 id="步骤">步骤</h3>
+<ul>
+<li>
+<p>创建工程，导入驱动的jar包</p>
+<p><code>mysql-connector-java-5.1.48.jar</code></p>
+</li>
+<li>
+<p>注册驱动</p>
+<p><code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;);</code></p>
+</li>
+<li>
+<p>获取连接</p>
+<p><code>Connection conn = DriverManager.getConnection(url, username, password);</code></p>
+</li>
+<li>
+<p>定义SQL语句</p>
+<p><code>String sql = &quot;updata ...&quot;;</code></p>
+</li>
+<li>
+<p>获取执行SQL对象</p>
+<p><code>Statement stmt = conn.createStatement();</code></p>
+</li>
+<li>
+<p>执行SQL</p>
+<p><code>stmt.executeUpdata(sql);</code></p>
+</li>
+<li>
+<p>处理返回结果</p>
+</li>
+<li>
+<p>释放资源</p>
+</li>
+</ul>
+<h2 id="三jdbc-api详解">三、JDBC API详解</h2>
+<h3 id="1drivermanager-驱动管理类">1.DriverManager 驱动管理类</h3>
+<p><code>static  Connection</code></p>
+<p><code>getConnection(String url, String user, String password)</code></p>
+<p>​	url:连接路径</p>
+<p>​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;</p>
+<p>​	示例：jdbc:mysql:127.0.0.1:3306/db1</p>
+<p>​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对</p>
+<p>​	user:用户名</p>
+<p>​	password:密码</p>
+<h3 id="2connection">2.Connection</h3>
+<p>2.1获取执行SQL的对象</p>
+<p>普通执行SQL对象 <code>statement createStatement()</code></p>
+<p>预编译SQL的执行对象：防止SQL注入 <code>PreparedStatement prepareStatement(sql)</code></p>
+<p>执行存储过程的对象 <code>CallableStatement prepareCall(sql)</code></p>
+<p>2.2 事务管理</p>
+<p>（1）MySQL事务管理</p>
+<p>​	开启事务：BEGIN</p>
+<p>​	提交事务：COMMIT</p>
+<p>​	回滚事务：ROLLBACK</p>
+<p>​	MySQL默认自动提交事务</p>
+<p>（2）JDBC事务管理</p>
+<p>​	开启事务：setAutoCommit(boolean autoCommit):true为自动提交事务；false为手动提交事务，即为开启事务</p>
+<p>​	提交事务：<code>commit();</code></p>
+<p>​	回滚事务：<code>rollback()</code></p>
+<h3 id="3statement">3.Statement</h3>
+<p>3.1 <code>int executeUpdata(sql)</code>:执行DML（数据的增删改操作）、DDL语句（表和库的增删改查操作）</p>
+<ul>
+<li>返回值：（1）DML语句影响的行数；（2）DDL语句执行后，执行成功也可能返回0</li>
+</ul>
+<p>3.1 <code>ResultSet executeQuery(sql):</code>执行DQL语句（对数据的查询）</p>
+<ul>
+<li>返回值：ResultSet结果集对象</li>
+</ul>
+<h3 id="4resutset结果集对象">4.ResutSet（结果集对象）</h3>
+<p>4.1 执行DQL语句，返回ResultSet对象</p>
+<p>（1）boolean next():将光标从当前位置向前移动一行，判断当前行是否为有效行。有效行表示当前行有数据。</p>
+<p>（2）xxx getXxxx：获取数据。xxx为数据类型，如int getInt(参数);  String getString(参数)。int为列的编号，从1开始;String为列的名称</p>
+<p>4.2 查询对象并封装到集合中</p>
+<p>步骤：</p>
+<ol>
+<li>定义实体类</li>
+<li>查询数据，封装到实体类中</li>
+<li>将实体类对象存入集合中</li>
+</ol>
+<h3 id="5preparedstatement">5.PreparedStatement</h3>
+<p>作用：预编译SQL语句并执行：预防SQL注入问题</p>
+<p>SQL注入：通过操作输入来修改事先定义好的SQL语句，用以达到执行代码对服务器进行攻击的方法</p>
+<p>使用：（1）需要将<code>useServerPreStmts = true</code> 加入到 <code>url</code> 的参数里面；（2）配置MySQL执行日志；（3）重启MySQL；</p>
+<p>使用步骤：</p>
+<p>（1）获取PreparedStatement对象</p>
+<p><code>//SQL语句中的参数值，使用？占位符代替</code></p>
+<p><code>String sql = &quot;select * from user where username = ? and password = ?&quot;;</code></p>
+<p><code>PreparedStatement ps = conn.prepareStatement(sql);</code></p>
+<p>（2）设置参数值</p>
+<p>使用setXxx(参数1，参数2)：给？赋值</p>
+<p>参数1：？的位置，从1开始编号</p>
+<p>参数2：？的值</p>
+<p>（3）执行SQL</p>
+<p>executeUpdata();/executeQuery();  不需要再传递sql</p>
+<h2 id="四数据库连接池">四、数据库连接池</h2>
+<p>数据库连接池是一个容器，负责分配、管理数据库连接。</p>
+<p>好处：（1）资源重用；（2）提升系统响应速度；（3）避免数据库连接遗漏。</p>
+<h3 id="1实现">1.实现</h3>
+<p>标准接口 DataSource</p>
+<p>​	官方（SUN)提供的数据库连接池标准接口，由第三方实现此接口。功能：获取连接。</p>
+<p><code>Connection getConnection()</code></p>
+<p>常见的数据库连接池：</p>
+<ul>
+<li>​	DBCP</li>
+<li>​	C3P0</li>
+<li>​	Druid（阿里巴巴开源，是Java语言最好的数据库连接池之一）</li>
+</ul>
+<h3 id="2使用步骤">2.使用步骤</h3>
+<ul>
+<li>
+<p>导入jar包druid-1.1.12.jar</p>
+</li>
+<li>
+<p>定义配置文件</p>
+<p><code>druid.properties</code></p>
+<p><code>包括驱动说明、url、数据库名称和密码、数据池最大连接数、最大等待时间等等~</code></p>
+</li>
+<li>
+<p>加载配置文件</p>
+<p><code>Properties prop = new Properties();</code></p>
+<p><code>prop.load(new FileInputStream(&quot;druid.properties的路径&quot;))</code></p>
+</li>
+<li>
+<p>获取数据库连接池对象</p>
+<p><code>DataSource dataSource = DruidDataSourceFactory.createDataSource(prop);</code></p>
+</li>
+<li>
+<p>获取连接</p>
+<p><code>Connection connection = dataSource.getConnection();</code></p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-09</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/posts/jdbc/" data-title="JDBC"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/posts/jdbc/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/jdbc/" data-title="JDBC"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/jdbc/" data-title="JDBC"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/jdbc/" data-title="JDBC"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/" class="prev" rel="prev" title="数据库学习"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>数据库学习</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">gqiang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

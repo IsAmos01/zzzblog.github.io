@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>Git操作练习 - Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Git操作练习" />
-<meta property="og:description" content="一、本地仓库 本地第一次提交
+<meta property="og:description" content="学习计划之01Git 一、本地仓库 本地第一次提交
 git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
 git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 " />
 <meta property="og:type" content="article" />
@@ -15,13 +15,13 @@ git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Git操作练习"/>
-<meta name="twitter:description" content="一、本地仓库 本地第一次提交
+<meta name="twitter:description" content="学习计划之01Git 一、本地仓库 本地第一次提交
 git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
 git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 "/>
 <meta name="application-name" content="Amos&#39;s blog">
 <meta name="apple-mobile-web-app-title" content="Amos&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/" /><link rel="prev" href="http://example.org/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" /><link rel="next" href="http://example.org/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/" /><link rel="prev" href="http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" /><link rel="next" href="http://example.org/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -32,7 +32,7 @@ git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "http:\/\/example.org\/posts\/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0\/"
-        },"genre": "posts","wordcount":  76 ,
+        },"genre": "posts","wordcount":  77 ,
         "url": "http:\/\/example.org\/posts\/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0\/","datePublished": "2022-08-01T09:17:28+08:00","dateModified": "2022-08-01T09:17:28+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -74,7 +74,7 @@ git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git操作练习</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;76 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-01">2022-08-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;77 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -83,16 +83,17 @@ git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#学习计划之01git">学习计划之01Git</a>
       <ul>
         <li><a href="#一本地仓库">一、本地仓库</a></li>
+        <li><a href="#二多人协作">二、多人协作</a></li>
+        <li><a href="#三其他操作">三、其他操作</a></li>
       </ul>
     </li>
-    <li><a href="#二多人协作">二、多人协作</a></li>
-    <li><a href="#三其他操作">三、其他操作</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h3 id="一本地仓库">一、本地仓库</h3>
+            </div><div class="content" id="content"><h2 id="学习计划之01git">学习计划之01Git</h2>
+<h3 id="一本地仓库">一、本地仓库</h3>
 <p>本地第一次提交</p>
 <ol>
 <li>git init 初始化本地仓库</li>
@@ -111,8 +112,8 @@ git push origin master 将本地内容推送到远程仓库（之后）</li>
 <li>git commit -m &lsquo;备注信息&rsquo;</li>
 <li>git push origin master  将本地新增内容推送到远程仓库</li>
 </ol>
-<h2 id="二多人协作">二、多人协作</h2>
-<h2 id="三其他操作">三、其他操作</h2>
+<h3 id="二多人协作">二、多人协作</h3>
+<h3 id="三其他操作">三、其他操作</h3>
 <ul>
 <li>git status  查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件）</li>
 <li>git diff 详细查看哪些文件修改了，修改了什么地方</li>
@@ -141,7 +142,7 @@ git push origin master 将本地内容推送到远程仓库（之后）</li>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/%E5%85%AB%E6%9C%88%E7%9B%AE%E6%A0%87/" class="prev" rel="prev" title="八月目标"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>八月目标</a>
+    <div class="post-nav"><a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="prev" rel="prev" title="线程池"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>线程池</a>
             <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/" class="next" rel="next" title="学习计划">学习计划<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>

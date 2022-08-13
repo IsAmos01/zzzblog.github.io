@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
         <title>ThreadLocal - Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="ThreadLocal" />
-<meta property="og:description" content="ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
+<meta property="og:description" content="学习计划之03ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
 1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
 二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
 三、HOW get():获取当前线程绑定的变量
@@ -19,7 +19,7 @@ initialValue():返回当前线程局部变量的初始值" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="ThreadLocal"/>
-<meta name="twitter:description" content="ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
+<meta name="twitter:description" content="学习计划之03ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
 1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
 二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
 三、HOW get():获取当前线程绑定的变量
@@ -91,13 +91,17 @@ initialValue():返回当前线程局部变量的初始值"/>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一what">一、WHAT</a></li>
-    <li><a href="#二why">二、WHY</a></li>
-    <li><a href="#三how">三、HOW</a></li>
+    <li><a href="#学习计划之03threadlocal">学习计划之03ThreadLocal</a>
+      <ul>
+        <li><a href="#一what">一、WHAT</a></li>
+        <li><a href="#二why">二、WHY</a></li>
+        <li><a href="#三how">三、HOW</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="threadlocal">ThreadLocal</h1>
-<h2 id="一what">一、WHAT</h2>
+            </div><div class="content" id="content"><h2 id="学习计划之03threadlocal">学习计划之03ThreadLocal</h2>
+<h3 id="一what">一、WHAT</h3>
 <p>​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。</p>
 <p>1.threaLocal和synchronized的区别
 synchronized：
@@ -108,10 +112,10 @@ ThreadLocal：
 2.多线程中让每个线程之间的相互隔离
 2.ThreadLocal的内部结构
 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值</p>
-<h2 id="二why">二、WHY</h2>
+<h3 id="二why">二、WHY</h3>
 <p>​	1.每个线程需要有自己单独的实例
 ​	2.实力需要在多个方法中共享，但不希望被多线程共享</p>
-<h2 id="三how">三、HOW</h2>
+<h3 id="三how">三、HOW</h3>
 <p>get():获取当前线程绑定的变量</p>
 <ul>
 <li>首先获取当前线程，根据当前线程获取一个Map</li>
