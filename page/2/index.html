@@ -81,16 +81,6 @@
 将K、V封装到Node对象当中； 利用hashcode()方法得出k的hash值； 通过哈希函数将hash值转换为数组的下标； 如果下标没有任何元素，就把Node添加到这个位置，如果下标对应位置上有链表，就将k与链表上的每个节点进行equal，如果返回是false，那这个新的节点会被添加到末尾，吐过有一个返回true，则这个节点的value将会被覆盖。 2.get()方法
 先调用hashCode算法得出k的哈希值，并通过哈希算法转换为数组的下标； 通过数组下标快速定位到某个位置上，如果位置上什么都没有，就返回null； 如果这个位置上有单向链表，那么就将k与单向链表上的每个节点的k进行equal，吐过返回false，就返回null；如果返回true，则返回该节点value值。 </div><div class="post-footer">
         <a href="/posts/hashmap/">Read More</a></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/sql%E8%AF%AD%E8%A8%80/"></a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="0001-01-01">0001-01-01</time></span></div><div class="content">title: &ldquo;SQL语言&rdquo; date: 2022-08-09T15:00:15+08:00 draft: false
-SQL语言(未完待续) 一、SQL基础 1.SELECT SELECT column_name,column_name FROM table_name;
-SELECT * FROM table_name;
-SELECT DISTINCT column_name,column_name FROM table_name; 返回列中不同的值
-2.WHERE SELECT column_name,column_name FROM table_name WHERE column_name operator value;
-WHERE用于提取那些满足条件的记录；
-3.AND&amp;OR 4.ORDER BY 5.INSERTE INTO INSERT INTO table_name VALUES (value1,value2,value3,&hellip;); INSERT INTO table_name (column1,column2,column3,&hellip;) VALUES (value1,value2,value3,&hellip;); 6.UPDATA UPDATE table_name SET column1=value1,column2=value2,&hellip; WHERE some_column=some_value; 7.DELETE DELETE FROM table_name WHERE some_column=some_value; 8.CREATE DATABASE 9.CREATE TABLE 1O.SQL约束 NOT NULL UNIQUE PRIMARY KEY FOREIGN KEY CHECK DEFAULT 设置默认值 11.</div><div class="post-footer">
-        <a href="/posts/sql%E8%AF%AD%E8%A8%80/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
