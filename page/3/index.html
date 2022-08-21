@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+	<meta name="generator" content="Hugo 0.101.0" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Just Do It" />
+<meta property="og:description" content="This is my cool site" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/" /><meta property="og:site_name" content="Amos&#39;s blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Just Do It"/>
+<meta name="twitter:description" content="This is my cool site"/>
+<meta name="application-name" content="Amos&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Amos&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Just Do It">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Just Do It"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "http:\/\/example.org\/","inLanguage": "en","author": {
+                "@type": "Person",
+                "name": "gqiang"
+            },"description": "This is my cool site","name": "Just Do It"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Just Do It">Amos&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Just Do It">Amos&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/jdbc/">JDBC</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-09">2022-08-09</time></span></div><div class="content">学习计划之06JDBC学习 一、简介 ​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。
+​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。
+​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。
+二、快速入门 步骤 创建工程，导入驱动的jar包
+mysql-connector-java-5.1.48.jar
+注册驱动
+Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+获取连接
+Connection conn = DriverManager.getConnection(url, username, password);
+定义SQL语句
+String sql = &quot;updata ...&quot;;
+获取执行SQL对象
+Statement stmt = conn.createStatement();
+执行SQL
+stmt.executeUpdata(sql);
+处理返回结果
+释放资源
+三、JDBC API详解 1.DriverManager 驱动管理类 static Connection
+getConnection(String url, String user, String password)
+​	url:连接路径
+​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;
+​	示例：jdbc:mysql:127.0.0.1:3306/db1
+​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对
+​	user:用户名
+​	password:密码
+2.Connection 2.1获取执行SQL的对象
+普通执行SQL对象 statement createStatement()
+预编译SQL的执行对象：防止SQL注入 PreparedStatement prepareStatement(sql)</div><div class="post-footer">
+        <a href="/posts/jdbc/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">数据库学习</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-08">2022-08-08</time></span></div><div class="content">学习计划之05数据库 一、数据模型及数据库系统结构 1.层次模型
+特点：
+有且只有一个节点没有双亲节点，这个节点成为根节点； 根以外的其他节点有且只有一个双亲节点。 层次模型像一棵倒立的树，结点的双亲是唯一的。
+优点：结构清晰；查询效率高；有良好的完整性支撑； 缺点：层次模型无法处理多对多的关系；无法处理一个结点有多个双亲节点的情况； 2 网状模型
+特点：
+允许一个以上的系欸但无双亲； 一个节点可以有多于一个的双亲。 网状模型的优缺点：
+优点：
+结点之间的联系可以有很多； 具有良好的性能，存取效率较高。 缺点：
+结构比较复杂，当应用环境扩大，数据库的结构变得越来越复杂； 网状模型的DDL、DML复杂，并且要嵌入到某一种高级语言中，不好掌握，不容易使用； 应用程序在访问数据时必须选择适当的存取路径，因此必须了解系统结构的细节，加重了编写应用程序的负担。 3 关系模型
+​	关系数据库是目前使用最广泛的数据库，其采用关系模型作为数据的组织方式。
+关系：通常对应一张”表“； 元组：一行数据即为一个元组； 属性：表中的一列为一个属性； 码：通过码可以唯一确定一个元组； 域：具有相同数据类型的值的集合； 分量：元组中的一个属性值； ​	关系的操作包括查询、插入、删除和更新数据；关系的完成行约束包括三大类：实体完整性、参照完整性和用户定义的完整性。
+4 数据库系统的三级模式结构
+外模式：也称子模式或用户模式，是数据库用户（包括程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图。一个数据库可以有多个外模式。 模式：也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。不涉及物理存储细节和硬件环境，也不与具体的应用程序、开发工具及程序设计语言有关。一个数据库只有一个模式。 内模式：也称存储模式，是物理结构和存储方式的描述，是数据在数据库内部的组织方式。 二、关系数据库 1.关系数据库结构及形式化定义
+关系
+​	关系模型的数据结构就是——关系，在用户看来就是一张二维表。关系模型是建立在集合代数的基础上的，因此这里丛集合论的角度给出关系话数据结构的一些定义。
+（1）域：具有相同数据类型的值的结合。
+（2）笛卡尔积：域上的一种集合运算。
+举例：
+D1 = {张， 王}；D2 = {计算机， 测绘}； D3 = {陕西， 北京， 安徽}
+则D1，D2，D3的笛卡尔积为
+D1✖D2✖D3 =
+{ （张， 计算机， 陕西）， （张， 计算机， 北京），（张， 计算机， 安徽），</div><div class="post-footer">
+        <a href="/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">学习计划</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-06">2022-08-06</time></span></div><div class="content">学习计划 八月（8.1~8.28） 第一周： 周一：git基础操作练习，Java基础 周二：Java基础语法、异常处理、面向对象等、SQL语法等 周三：Java（集合框架、网络编程、多线程等）、SQL函数及回顾 周四：制定学习计划 周五：制定计划+Java基础（关键字、变量、标识符、运算符。判断与循环） 第二周： 周一：
+学习数据库基础设计；
+输出：制定项目计划，生成项目的基础数据库表
+实践情况：完成
+周二：
+JDBC，跑通部分部门的业务代码；
+输出：下载部门业务代码，布置环境；创建项目实体类；
+实践情况：完成
+周三：
+JDBC学习；熟悉业务代码内容；
+输出：JDBC练习，项目中加入JDBC代码
+实践情况：未完成，代码调试中~
+周四：
+Java面向对象（第4，5，6章）+泛型+异常处理
+输出：完善项目
+实践情况：未完成~
+周五：
+集合（第9章）；
+输出：集合知识总结
+实践情况：未完成
+周六：
+输出：一周总结
+实践情况：完成，并进行面向对象的学习
+第三周： 周一：
+集合知识学习
+输出：集合知识总结，完成在控制台的登陆、注册、退出等功能；
+周二：
+设计模式学习
+输出：设计模式文字总结（类图，设计原则，单例模式，简单工厂模式）
+周三：
+设计模式学习
+输出：设计模式文字总结（抽象工厂模式、原型模式、建造者模式、适配器模式、桥接模式）
+周四：
+mybatis初步学习了解
+输出：下载mybatis源码，加入数据库查询的测试案例并成功运行；设计模式学习（代理模式、装饰器模式、观察者模式、模板模式）
+周五：
+mybatis源码学习
+输出：mybatis的数据库操作路线；制定mybatis学习路线
+第四周： 周一、周二、周三、周四
+mybatis源码学习
+输出：mybatis的运行原理（以查询语句为例），熟悉mybatis所运用的设计模式；在控制台完成管理员和员工的查询、修改、删除、增加等功能
+周五：
+了解spring boot的基本概念和使用
+输出：在控制台完成菜单的查询、修改、删除、增加等功能；
+周六：
+团建（故宫+石景山）
+九月 第一周： 周一：
+网络编程（socket，TCP/IP)；
+输出：文字总结，并进行demo练习（主要还没想清楚怎么将这部分内容结合到项目中如果学到这部分的时候没有合适的输出，就做一个小的demo操作练习）；
+构思做一个实践项目专有的”mybatis“；
+周二：
+网络编程（socket，TCP/IP)；
+输出：文字总结，并进行demo练习
+周三：
+数据库（设计、结构、安全等）
+输出：文字总结，优化项目数据库（主要修正数据库表是否符合规范，有没有不合理的地方）</div><div class="post-footer">
+        <a href="/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/">Git操作练习</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-01">2022-08-01</time></span></div><div class="content">学习计划之01Git 一、本地仓库 本地第一次提交
+git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
+git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 </div><div class="post-footer">
+        <a href="/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">学习计划之04线程池 一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
+当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
+如果队列满了,线程数达到最大线程数则会执行拒绝策略。
+当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
+二、五种实现 1、newSingleThreadExecutor()
+​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充
+2、newFixedThreadPool()
+​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。
+3、newCachedThreadPool()
+​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。
+4、newScheduledThreadPool()
+​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）
+三、七个核心参数 1、七个参数
+corePoolSize: 线程池核心线程个数
+workQueue:用于保存等待执行任务的阻塞队列
+maximunPoolSize: 线程池最大线程数量
+ThreadFactory: 创建线程的工厂
+RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略
+keeyAliveTime: 空闲线程存活时间
+TimeUnit: 存活时间单位
+2、CPU密集型
+​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；
+3、IO密集型
+​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。
+4、线程池大小= 最大线程数 + 阻塞队列大小
+5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。
+6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。
+四、四种策略 AbortPolicy（被拒绝了抛出异常）
+CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)
+DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)
+DiscardPolicy(默默丢弃、不抛异常)
+五、拒绝策略执行则么办？ 另外创建一个队列,当拒绝策略执行将任务放入队列。
+如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。
+其他情况要根据场景考虑 比如又些任务过期淘汰</div><div class="post-footer">
+        <a href="/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/threadlocal/">ThreadLocal</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">学习计划之03ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
+1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
+二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
+三、HOW get():获取当前线程绑定的变量
+首先获取当前线程，根据当前线程获取一个Map 如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entry e，否则转到4； 如果e不为null，则返回e.value，否则转到4 Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为key和value创建一个新的Map set():将变量绑定到当前线程中
+首先获取当前线程，并根据当前线程获取一个Map 如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key） 如果Map为空，则给该线程创建Map，并设置初始值 remove():移除当前线程绑定的局部变量，该方法可以帮助JVM进行GC
+initialValue():返回当前线程局部变量的初始值</div><div class="post-footer">
+        <a href="/posts/threadlocal/">Read More</a></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">gqiang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typeit@8.6.0/dist/index.umd.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"data":{"id-1":"This is my cool site"},"typeit":{"cursorChar":"|","cursorSpeed":1000,"data":{"id-1":["id-1"]},"duration":-1,"speed":100}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

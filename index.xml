@@ -4,225 +4,172 @@
         <link>http://example.org/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>gqiang9512@163.com (gqiang)</managingEditor>
-            <webMaster>gqiang9512@163.com (gqiang)</webMaster><lastBuildDate>Tue, 09 Aug 2022 15:00:15 &#43;0800</lastBuildDate>
+            <webMaster>gqiang9512@163.com (gqiang)</webMaster><lastBuildDate>Sun, 21 Aug 2022 18:56:21 &#43;0800</lastBuildDate>
             <atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>JDBC</title>
-    <link>http://example.org/posts/jdbc/</link>
-    <pubDate>Tue, 09 Aug 2022 15:00:15 &#43;0800</pubDate>
+    <title>Mybatis源码学习之搭建查询示例代码</title>
+    <link>http://example.org/posts/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%90%AD%E5%BB%BA%E6%9F%A5%E8%AF%A2%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</link>
+    <pubDate>Sun, 21 Aug 2022 18:56:21 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/jdbc/</guid>
-    <description><![CDATA[学习计划之06JDBC学习 一、简介 ​	概念：就是使用Java语言操作关系型数据库的一套API，全程（Java Database Connection)Java数据库连接。
-​	JDBC是一套sun公司定义的一套操作所有关系型数据库的标准接口，各个数据库厂商（MySQL、Oracle、DB2）等分别实现这个接口，名曰 “驱动”。
-​	优势：可随时更换底层数据库，访问数据库的Java代码基本不变，只需要修改底层的驱动jar包即可。
-二、快速入门 步骤 创建工程，导入驱动的jar包
-mysql-connector-java-5.1.48.jar
-注册驱动
-Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
-获取连接
-Connection conn = DriverManager.getConnection(url, username, password);
-定义SQL语句
-String sql = &quot;updata ...&quot;;
-获取执行SQL对象
-Statement stmt = conn.createStatement();
-执行SQL
-stmt.executeUpdata(sql);
-处理返回结果
-释放资源
-三、JDBC API详解 1.DriverManager 驱动管理类 static Connection
-getConnection(String url, String user, String password)
-​	url:连接路径
-​	语法：jdbc:mysql://ip地址(域名):端口号/数据库名称?参数键值对1&amp;参数键值对2&hellip;
-​	示例：jdbc:mysql:127.0.0.1:3306/db1
-​	注意：如果连接的是本机mysql服务器，并且mysql服务默认端口是3306，则url可以简写为：jdbc:mysql:///数据库名称?参数键值对
-​	user:用户名
-​	password:密码
-2.Connection 2.1获取执行SQL的对象
-普通执行SQL对象 statement createStatement()
-预编译SQL的执行对象：防止SQL注入 PreparedStatement prepareStatement(sql)]]></description>
+    <guid>http://example.org/posts/mybatis%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0%E4%B9%8B%E6%90%AD%E5%BB%BA%E6%9F%A5%E8%AF%A2%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81/</guid>
+    <description><![CDATA[一、源码下载 到mybatis的官网进行源码下载：https://mybatis.org/mybatis-3/
+下载Source code包，下载后解压，该项目是一个maven项目，我们用idea打开。
+二、Demo项目 1、在源码工程（org.apache.ibatis）下创建一个demo目录，存放我们的demo代码（Employee、MybatisMain）
+@Data public class Employee { private Long id; private String username; private String name; private String password; private String phone; private String sex; private String idNumber; private Integer status; private LocalDateTime createTime; private LocalDateTime updateTime; } public class MybatisMain { public static void main(String[] args) throws IOException { String resource = &#34;mybatis-config.xml&#34;; InputStream inputStream = Resources.getResourceAsStream(resource); //將配置文件中的配置内容加載進Configuration對象中 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream); SqlSession sqlSession = sqlSessionFactory.]]></description>
 </item>
 <item>
-    <title>数据库学习</title>
-    <link>http://example.org/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</link>
-    <pubDate>Mon, 08 Aug 2022 10:20:29 &#43;0800</pubDate>
+    <title>设计模式之模板模式</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 21 Aug 2022 18:55:09 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AD%A6%E4%B9%A0/</guid>
-    <description><![CDATA[学习计划之05数据库 一、数据模型及数据库系统结构 1.层次模型
-特点：
-有且只有一个节点没有双亲节点，这个节点成为根节点； 根以外的其他节点有且只有一个双亲节点。 层次模型像一棵倒立的树，结点的双亲是唯一的。
-优点：结构清晰；查询效率高；有良好的完整性支撑； 缺点：层次模型无法处理多对多的关系；无法处理一个结点有多个双亲节点的情况； 2 网状模型
-特点：
-允许一个以上的系欸但无双亲； 一个节点可以有多于一个的双亲。 网状模型的优缺点：
-优点：
-结点之间的联系可以有很多； 具有良好的性能，存取效率较高。 缺点：
-结构比较复杂，当应用环境扩大，数据库的结构变得越来越复杂； 网状模型的DDL、DML复杂，并且要嵌入到某一种高级语言中，不好掌握，不容易使用； 应用程序在访问数据时必须选择适当的存取路径，因此必须了解系统结构的细节，加重了编写应用程序的负担。 3 关系模型
-​	关系数据库是目前使用最广泛的数据库，其采用关系模型作为数据的组织方式。
-关系：通常对应一张”表“； 元组：一行数据即为一个元组； 属性：表中的一列为一个属性； 码：通过码可以唯一确定一个元组； 域：具有相同数据类型的值的集合； 分量：元组中的一个属性值； ​	关系的操作包括查询、插入、删除和更新数据；关系的完成行约束包括三大类：实体完整性、参照完整性和用户定义的完整性。
-4 数据库系统的三级模式结构
-外模式：也称子模式或用户模式，是数据库用户（包括程序员和最终用户）能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图。一个数据库可以有多个外模式。 模式：也称逻辑模式，是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图。不涉及物理存储细节和硬件环境，也不与具体的应用程序、开发工具及程序设计语言有关。一个数据库只有一个模式。 内模式：也称存储模式，是物理结构和存储方式的描述，是数据在数据库内部的组织方式。 二、关系数据库 1.关系数据库结构及形式化定义
-关系
-​	关系模型的数据结构就是——关系，在用户看来就是一张二维表。关系模型是建立在集合代数的基础上的，因此这里丛集合论的角度给出关系话数据结构的一些定义。
-（1）域：具有相同数据类型的值的结合。
-（2）笛卡尔积：域上的一种集合运算。
-举例：
-D1 = {张， 王}；D2 = {计算机， 测绘}； D3 = {陕西， 北京， 安徽}
-则D1，D2，D3的笛卡尔积为
-D1✖D2✖D3 =
-{ （张， 计算机， 陕西）， （张， 计算机， 北京），（张， 计算机， 安徽），]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[一、模板方法模式 1.概述 ​	在面向对象程序设计过程中，程序员常常会遇到这种情况：设计一个系统时知道了算法所需的关键步骤，而且确定了这些步骤的执行顺序，但某些步骤的具体实现还未知，或者说某些步骤的实现与具体的环境相关。
+​	例如，去银行办理业务一般要经过以下4个流程：取号、排队、办理具体业务、对银行工作人员进行评分等，其中取号、排队和对银行工作人员进行评分的业务对每个客户是一样的，可以在父类中实现，但是办理具体业务却因人而异，它可能是存款、取款或者转账等，可以延迟到子类中实现。
+定义：
+​	定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。
+2.结构 模板方法（Template Method）模式包含以下主要角色：
+抽象类（Abstract Class）：负责给出一个算法的轮廓和骨架。它由一个模板方法和若干个基本方法构成。
+模板方法：定义了算法的骨架，按某种顺序调用其包含的基本方法。
+基本方法：是实现算法各个步骤的方法，是模板方法的组成部分。基本方法又可以分为三种：
+抽象方法(Abstract Method) ：一个抽象方法由抽象类声明、由其具体子类实现。
+具体方法(Concrete Method) ：一个具体方法由一个抽象类或具体类声明并实现，其子类可以进行覆盖也可以直接继承。
+钩子方法(Hook Method) ：在抽象类中已经实现，包括用于判断的逻辑方法和需要子类重写的空方法两种。
+一般钩子方法是用于判断的逻辑方法，这类方法名一般为isXxx，返回值类型为boolean类型。
+具体子类（Concrete Class）：实现抽象类中所定义的抽象方法和钩子方法，它们是一个顶级逻辑的组成步骤。
+3.案例 代码如下
+public abstract class AbstractClass { public final void cookProcess() { //第一步：倒油 this.pourOil(); //第二步：热油 this.heatOil(); //第三步：倒蔬菜 this.pourVegetable(); //第四步：倒调味料 this.pourSauce(); //第五步：翻炒 this.fry(); } public void pourOil() { System.out.println(&#34;倒油&#34;); } //第二步：热油是一样的，所以直接实现 public void heatOil() { System.out.println(&#34;热油&#34;); } //第三步：倒蔬菜是不一样的（一个下包菜，一个是下菜心） public abstract void pourVegetable(); //第四步：倒调味料是不一样 public abstract void pourSauce(); //第五步：翻炒是一样的，所以直接实现 public void fry(){ System.]]></description>
 </item>
 <item>
-    <title>学习计划</title>
-    <link>http://example.org/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</link>
-    <pubDate>Sat, 06 Aug 2022 13:18:22 &#43;0800</pubDate>
+    <title>设计模式之观察者模式</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 21 Aug 2022 18:55:00 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92/</guid>
-    <description><![CDATA[学习计划 八月（8.1~8.28） 第一周： 周一：git基础操作练习，Java基础 周二：Java基础语法、异常处理、面向对象等、SQL语法等 周三：Java（集合框架、网络编程、多线程等）、SQL函数及回顾 周四：制定学习计划 周五：制定计划+Java基础（关键字、变量、标识符、运算符。判断与循环） 第二周： 周一：
-学习数据库基础设计；
-输出：制定项目计划，生成项目的基础数据库表
-实践情况：完成
-周二：
-JDBC，跑通部分部门的业务代码；
-输出：下载部门业务代码，布置环境；创建项目实体类；
-实践情况：完成
-周三：
-JDBC学习；熟悉业务代码内容；
-输出：JDBC练习，项目中加入JDBC代码
-实践情况：未完成，代码调试中~
-周四：
-Java面向对象（第4，5，6章）+泛型+异常处理
-输出：完善项目
-实践情况：未完成~
-周五：
-集合（第9章）；
-输出：集合知识总结
-实践情况：未完成
-周六：
-输出：一周总结
-实践情况：完成，并进行面向对象的学习
-第三周： 周一：
-集合知识学习
-输出：集合知识总结，完成在控制台的登陆、注册、退出等功能；
-周二：
-基本的设计模式学习
-输出：对基本的设计模式进行文字总结；在控制台完成管理员的查询、修改、删除、增加等功能
-周三：
-mybatis初步学习了解
-输出：mybatis源码学习路线制定；在控制台完成管理员的查询、修改、删除、增加等功能
-周四、五、六：
-mybatis源码学习
-输出：mybatis个人理解总结；在控制台完成员工和菜单的查询、修改、删除、增加等功能
-第四周： 周一、周二
-mybatis源码学习
-输出：mybatis个人理解总结
-周三：
-spring boot学习
-输出：了解spring boot的基本概念和使用，并做总结
-周四、五：
-输出：利用对mybatis的了解，修改项目中的数据库操作的相关代码
-九月 第一周： 周一：
-网络编程（socket，TCP/IP)；
-输出：文字总结，并进行demo练习（主要还没想清楚怎么将这部分内容结合到项目中如果学到这部分的时候没有合适的输出，就做一个小的demo操作练习）
-周二：
-网络编程（socket，TCP/IP)；
-输出：文字总结，并进行demo练习
-周三：
-数据库（设计、结构、安全等）
-输出：文字总结，优化项目数据库（主要修正数据库表是否符合规范，有没有不合理的地方）
-周四：
-数据结构与算法（图和查找排序算法等）
-输出：文字总结并练习]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[观察者模式 1.概念 ​	又被称为发布-订阅（Publish/Subscribe）模式，它定义了一种一对多的依赖关系，让多个观察者对象同时监听某一个主题对象。这个主题对象在状态变化时，会通知所有的观察者对象，使他们能够自动更新自己。
+2.结构 在观察者模式中有如下角色：
+Subject：抽象主题（抽象被观察者），抽象主题角色把所有观察者对象保存在一个集合里，每个主题都可以有任意数量的观察者，抽象主题提供一个接口，可以增加和删除观察者对象。 ConcreteSubject：具体主题（具体被观察者），该角色将有关状态存入具体观察者对象，在具体主题的内部状态发生改变时，给所有注册过的观察者发送通知。 Observer：抽象观察者，是观察者的抽象类，它定义了一个更新接口，使得在得到主题更改通知时更新自己。 ConcrereObserver：具体观察者，实现抽象观察者定义的更新接口，以便在得到主题更改通知时更新自身的状态。 3.案例 微信公众号
+​	在使用微信公众号时，大家都会有这样的体验，当你关注的公众号中有新内容更新的话，它就会推送给关注公众号的微信用户端。我们使用观察者模式来模拟这样的场景，微信用户就是观察者，微信公众号是被观察者，有多个的微信用户关注了程序猿这个公众号。
+代码如下：
+定义抽象观察者类，里面定义一个更新的方法
+public interface Observer { void update(String message); } 定义具体观察者类，微信用户是观察者，里面实现了更新的方法
+public class WeixinUser implements Observer { // 微信用户名 private String name; public WeixinUser(String name) { this.name = name; } @Override public void update(String message) { System.out.println(name + &#34;-&#34; + message); } } 定义抽象主题类，提供了attach、detach、notify三个方法
+public interface Subject { //增加订阅者 public void attach(Observer observer); //删除订阅者 public void detach(Observer observer); //通知订阅者更新消息 public void notify(String message); } 微信公众号是具体主题（具体被观察者），里面存储了订阅该公众号的微信用户，并实现了抽象主题中的方法]]></description>
 </item>
 <item>
-    <title>Git操作练习</title>
-    <link>http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/</link>
-    <pubDate>Mon, 01 Aug 2022 09:17:28 &#43;0800</pubDate>
+    <title>设计模式之桥接模式</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 21 Aug 2022 18:54:12 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/git%E6%93%8D%E4%BD%9C%E7%BB%83%E4%B9%A0/</guid>
-    <description><![CDATA[学习计划之01Git 一、本地仓库 本地第一次提交
-git init 初始化本地仓库 git add . 添加本地所有文件到暂存区 git add [文件名称] 添加单个文件到暂存区 git commit -m &lsquo;备注&rsquo; 提交文件到本地HEAD区 git remote -v （可选）查看远程仓库信息 git remote add origin git@github.com:IsAmos01/GW-GQiang.git 与GitHub仓库进行关联 git remote rm origin (可选)删除远程仓库，即解绑 git push -u origin master 将本地内容推送到远程仓库（第一次） git push origin master 将本地内容推送到远程仓库（之后） 本地第二次提交
-git add [文件名称] 添加文件 git commit -m &lsquo;备注信息&rsquo; git push origin master 将本地新增内容推送到远程仓库 二、多人协作 三、其他操作 git status 查看当前文件状态,以及哪些文件修改了（相比暂存前后的文件） git diff 详细查看哪些文件修改了，修改了什么地方 git rm [文件名称] 丛暂存区域移除文件，并连带从工作目录中删除指定的文件。 git log 查看提交记录 git chekout 切换分支 ]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[桥接模式 1.概念 ​	现在有一个需求，需要创建不同的图形，并且每个图形都有可能会有不同的颜色。我们可以利用继承的方式来设计类的关系：
+​	我们可以发现有很多的类，假如我们再增加一个形状或再增加一种颜色，就需要创建更多的类。
+​	试想，在一个有多种可能会变化的维度的系统中，用继承方式会造成类爆炸，扩展起来不灵活。每次在一个维度上新增一个具体实现都要增加多个子类。为了更加灵活的设计系统，我们此时可以考虑使用桥接模式。
+定义：
+​	将抽象与实现分离，使它们可以独立变化。它是用组合关系代替继承关系来实现，从而降低了抽象和实现这两个可变维度的耦合度。
+2.结构 桥接（Bridge）模式包含以下主要角色：
+抽象化（Abstraction）角色 ：定义抽象类，并包含一个对实现化对象的引用。 扩展抽象化（Refined Abstraction）角色 ：是抽象化角色的子类，实现父类中的业务方法，并通过组合关系调用实现化角色中的业务方法。 实现化（Implementor）角色 ：定义实现化角色的接口，供扩展抽象化角色调用。 具体实现化（Concrete Implementor）角色 ：给出实现化角色接口的具体实现。 3.案例 【例】视频播放器
+​	需要开发一个跨平台视频播放器，可以在不同操作系统平台（如Windows、Mac、Linux等）上播放多种格式的视频文件，常见的视频格式包括RMVB、AVI、WMV等。该播放器包含了两个维度，适合使用桥接模式。
+类图如下：
+代码如下：
+//视频文件 public interface VideoFile { void decode(String fileName); } //avi文件 public class AVIFile implements VideoFile { public void decode(String fileName) { System.out.println(&#34;avi视频文件：&#34;+ fileName); } } //rmvb文件 public class REVBBFile implements VideoFile { public void decode(String fileName) { System.out.println(&#34;rmvb文件：&#34; + fileName); } } //操作系统版本 public abstract class OperatingSystemVersion { protected VideoFile videoFile; public OperatingSystemVersion(VideoFile videoFile) { this.]]></description>
 </item>
 <item>
-    <title>线程池</title>
-    <link>http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
-    <pubDate>Sat, 30 Jul 2022 16:08:25 &#43;0800</pubDate>
+    <title>设计模式之原型模式</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 21 Aug 2022 18:53:26 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
-    <description><![CDATA[学习计划之04线程池 一、线程池默认工作流程 线程在有任务的时候会创建核心的线程数corePoolSize
-当线程满了（有任务但是线程被使用完）不会立即扩容,而是放到阻塞队列中,当阻塞队列满了之后才会继续创建线程。
-如果队列满了,线程数达到最大线程数则会执行拒绝策略。
-当线程数大于核心线程数事,超过KeepAliveTime(闲置时间),线程会被回收,最终会保持corePoolSize个线程。
-二、五种实现 1、newSingleThreadExecutor()
-​	池里只有一条线程,如果线程因为异常而停止，会自动新建一个线程补充
-2、newFixedThreadPool()
-​	创建一个核心线程数跟最大线程数相同的线程池,线程池数量大小不变,如果有任务放入队列,等待空闲线程。
-3、newCachedThreadPool()
-​	线程池是创建一个核心线程数为0，最大线程为Inter.MAX_VALUE的线程池，线程池数量不确定,有空闲线程则优先使用,没用则创建新的线程处理任务,处理完放入线程池。
-4、newScheduledThreadPool()
-​	创建一个没有最大线程数限制的可以定时执行线程池,还有创建一个只有单个线程的可以定时执行线程池（Executors.newSingleThreadScheduledExecutor()）
-三、七个核心参数 1、七个参数
-corePoolSize: 线程池核心线程个数
-workQueue:用于保存等待执行任务的阻塞队列
-maximunPoolSize: 线程池最大线程数量
-ThreadFactory: 创建线程的工厂
-RejectedExecutionHandler: 队列满，并且线程达到最大线程数量的时候，对新任务的处理策略
-keeyAliveTime: 空闲线程存活时间
-TimeUnit: 存活时间单位
-2、CPU密集型
-​	获得cpu的核数，不同的硬件不一样，设置核数的线程数量可以通过Runtime.getRuntime().availableProcessors()；
-3、IO密集型
-​	IO非常消耗资源，所有我们需要计算大型的IO程序任务有多少个。一般来说，线程池最大值 &gt;大型任务的数量即可，一般设置大型任务的数量*2。
-4、线程池大小= 最大线程数 + 阻塞队列大小
-5、LinkedBlockingQueue给put(放入元素),take(取元素)都声明了一把锁，放入和取互不影响，效率更高。
-6、ArrayBlockingQueue 使用数组实现，在声明的时候必须指定长度，如果长度太大，造成内存浪费，长度太小，并发性能不高，如果数组满了，就无法放入元素，除非有其他线程取出元素，放入和取出都使用同一把锁，因此存在竞争，效率比LinkedBlockingQueue低。
-四、四种策略 AbortPolicy（被拒绝了抛出异常）
-CallerRunsPolicy(使用调用者所在线程执行，就是哪里来的回哪里去)
-DiscardOldestPolicy(尝试去竞争第一个，失败了也不抛异常)
-DiscardPolicy(默默丢弃、不抛异常)
-五、拒绝策略执行则么办？ 另外创建一个队列,当拒绝策略执行将任务放入队列。
-如果 是特别重要的话就 放入DB去持久化,给任务加个状态,通过状态来判断任务的执行情况。
-其他情况要根据场景考虑 比如又些任务过期淘汰]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[原型模式 1.概念 ​	用一个已经创建的实例作为原型，通过复制该原型对象来创建一个和原型对象相同的新对象。
+2.结构 原型模式包含如下角色：
+抽象原型类：规定了具体原型对象必须实现的的 clone() 方法。 具体原型类：实现抽象原型类的 clone() 方法，它是可被复制的对象。 访问类：使用具体原型类中的 clone() 方法来复制新的对象。 接口类图如下：
+3.案例 ​	同一学校的“三好学生”奖状除了获奖人姓名不同，其他都相同，可以使用原型模式复制多个“三好学生”奖状出来，然后在修改奖状上的名字即可。
+类图如下：
+代码如下：
+//奖状类 public class Citation implements Cloneable { private String name; public void setName(String name) { this.name = name; } public String getName() { return (this.name); } public void show() { System.out.println(name + &#34;同学：在2020学年第一学期中表现优秀，被评为三好学生。特发此状！&#34;); } @Override public Citation clone() throws CloneNotSupportedException { return (Citation) super.clone(); } } //测试访问类 public class CitationTest { public static void main(String[] args) throws CloneNotSupportedException { Citation c1 = new Citation(); c1.]]></description>
 </item>
 <item>
-    <title>ThreadLocal</title>
-    <link>http://example.org/posts/threadlocal/</link>
-    <pubDate>Sat, 30 Jul 2022 16:07:36 &#43;0800</pubDate>
+    <title>设计模式之单例模式</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+    <pubDate>Sun, 21 Aug 2022 18:53:02 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/threadlocal/</guid>
-    <description><![CDATA[学习计划之03ThreadLocal 一、WHAT ​	ThreadLocal类用来提供线程内部的局部变量，不同的线程之间不会干扰；这种变量在多线程环境下访问时能保证各个线程的变量相互独立于其他线程内的变量；在线程的生命周期内起作用，可以减少同一个线程内多个函数或组件之间的一些公共变量传递的复杂性。
-1.threaLocal和synchronized的区别 synchronized： 1.以时间换空间的方式，只提供一份变量让不同线程访问 2.多个线程之间访问资源的同步 ThreadLocal： 1.以空间换时间的方式，为每个变量提供一份变量副本 2.多线程中让每个线程之间的相互隔离 2.ThreadLocal的内部结构 Thread维护了一个ThreadLocalMap，其中key值为ThreadLocal，value值为实际变量副本值
-二、WHY ​	1.每个线程需要有自己单独的实例 ​	2.实力需要在多个方法中共享，但不希望被多线程共享
-三、HOW get():获取当前线程绑定的变量
-首先获取当前线程，根据当前线程获取一个Map 如果获取的Map不为空，则在Map中以ThreadLocal的引用作为key来在Map中获取对应的Entry e，否则转到4； 如果e不为null，则返回e.value，否则转到4 Map为空或者e为空，则通过initialValue函数获取初始值value，然后用ThreadLocal的引用和value作为key和value创建一个新的Map set():将变量绑定到当前线程中
-首先获取当前线程，并根据当前线程获取一个Map 如果获取的Map不为空，则将参数设置到Map中（当前ThreadLocal的引用作为key） 如果Map为空，则给该线程创建Map，并设置初始值 remove():移除当前线程绑定的局部变量，该方法可以帮助JVM进行GC
-initialValue():返回当前线程局部变量的初始值]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+    <description><![CDATA[单例模式 1.概念 ​	这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。
+2.结构 单例模式的主要有以下角色：
+单例类。只能创建一个实例的类 访问类。使用单例类 3.案例 单例设计模式分类两种：
+​	饿汉式：类加载就会导致该单实例对象被创建
+​	懒汉式：类加载不会导致该单实例对象被创建，而是首次使用该对象时才会创建
+3.1饿汉式-方式1 public class Singleton { //私有构造方法 private Singleton() {} //在成员位置创建该类的对象 private static Singleton instance = new Singleton(); //对外提供静态方法获取该对象 public static Singleton getInstance() { return instance; } } 说明：
+​	该方式在成员位置声明Singleton类型的静态变量，并创建Singleton类的对象instance。instance对象是随着类的加载而创建的。如果该对象足够大的话，而一直没有使用就会造成内存的浪费。
+3.2 饿汉式-方式2 public class Singleton { //私有构造方法 private Singleton() {} //在成员位置创建该类的对象 private static Singleton instance; static { instance = new Singleton(); } //对外提供静态方法获取该对象 public static Singleton getInstance() { return instance; } } 说明：]]></description>
 </item>
 <item>
-    <title>HashMap</title>
-    <link>http://example.org/posts/hashmap/</link>
-    <pubDate>Sat, 30 Jul 2022 16:06:47 &#43;0800</pubDate>
+    <title>设计模式之设计原则</title>
+    <link>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</link>
+    <pubDate>Sun, 21 Aug 2022 18:52:42 &#43;0800</pubDate>
     <author>gqiang</author>
-    <guid>http://example.org/posts/hashmap/</guid>
-    <description><![CDATA[学习计划之02HashMap 一、WHAT ​	HashMap是基于哈希表的Map接口的非同步实现，此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
-​	在Java中数组和链表是典型的数据存储结构。
-1.数组
-​	数组的存储区间连续，有点是随机访问性强，查找速度快，缺点是插入和删除速度快，内存利用率高且大小不固定，比较灵活，缺点是不能随机查找，查找速度慢。
-2.链表
-​	链表区间离散，优点是插入删除速度快，内存利用率高，大小不固定，比较灵活，缺点是不能随即查找，查找速度慢。
-3.HashMap
-​	哈希表也叫散列表，是一种神奇的结构，最大的特点就是快。在Java1.7之前是数组+链表，之后是数组+链表+红黑树。如果链表
-4.HashMap的节点
-​	HashMap是一个集合，键值对的集合，源码中每个节点用&lt;K、V&gt;表示。
-​	final int hash;
-​	final K key;
-​	V value;
-​	Node&lt;K,V&gt; next;
-​	Node是一个内部类，智利的key为键，value为值，next指向下一个元素，可以看出HashMap中的元素不是一个简单的键值对，还包含下一个元素的引用。
-二、WHY ​	在HashMap底层使用数组+链表+红黑树的结构完美的解决了数组和链表的问题，是的查询、插入、删除的效率都很高。
-​	在jdk1.8中，如果链表长度大于8且节点数组长度大于64时，则会将链表转为红黑树。
-三、HOW 1.put()方法
-将K、V封装到Node对象当中； 利用hashcode()方法得出k的hash值； 通过哈希函数将hash值转换为数组的下标； 如果下标没有任何元素，就把Node添加到这个位置，如果下标对应位置上有链表，就将k与链表上的每个节点进行equal，如果返回是false，那这个新的节点会被添加到末尾，吐过有一个返回true，则这个节点的value将会被覆盖。 2.get()方法
-先调用hashCode算法得出k的哈希值，并通过哈希算法转换为数组的下标； 通过数组下标快速定位到某个位置上，如果位置上什么都没有，就返回null； 如果这个位置上有单向链表，那么就将k与单向链表上的每个节点的k进行equal，吐过返回false，就返回null；如果返回true，则返回该节点value值。 ]]></description>
+    <guid>http://example.org/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/</guid>
+    <description><![CDATA[设计原则 在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性，程序员要尽量根据6条原则来开发程序，从而提高软件开发效率、节约软件开发成本和维护成本。
+1 开闭原则 对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。
+想要达到这样的效果，我们需要使用接口和抽象类。
+因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。
+下面以 搜狗输入法 的皮肤为例介绍开闭原则的应用。
+【例】搜狗输入法 的皮肤设计。
+分析：搜狗输入法 的皮肤是输入法背景图片、窗口颜色和声音等元素的组合。用户可以根据自己的喜爱更换自己的输入法的皮肤，也可以从网上下载新的皮肤。这些皮肤有共同的特点，可以为其定义一个抽象类（AbstractSkin），而每个具体的皮肤（DefaultSpecificSkin和HeimaSpecificSkin）是其子类。用户窗体可以根据需要选择或者增加新的主题，而不需要修改原代码，所以它是满足开闭原则的。
+2 里氏代换原则 里氏代换原则是面向对象设计的基本原则之一。
+里氏代换原则：任何基类可以出现的地方，子类一定可以出现。通俗理解：子类可以扩展父类的功能，但不能改变父类原有的功能。换句话说，子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。
+如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。
+下面看一个里氏替换原则中经典的一个例子
+【例】正方形不是长方形。
+在数学领域里，正方形毫无疑问是长方形，它是一个长宽相等的长方形。所以，我们开发的一个与几何图形相关的软件系统，就可以顺理成章的让正方形继承自长方形。
+代码如下：
+长方形类（Rectangle）：
+public class Rectangle { private double length; private double width; public double getLength() { return length; } public void setLength(double length) { this.length = length; } public double getWidth() { return width; } public void setWidth(double width) { this.width = width; } } 正方形（Square）：
+由于正方形的长和宽相同，所以在方法setLength和setWidth中，对长度和宽度都需要赋相同值。
+public class Square extends Rectangle { public void setWidth(double width) { super.]]></description>
+</item>
+<item>
+    <title>注解@RequestBody</title>
+    <link>http://example.org/posts/%E6%B3%A8%E8%A7%A3requestbody/</link>
+    <pubDate>Mon, 15 Aug 2022 15:12:42 &#43;0800</pubDate>
+    <author>gqiang</author>
+    <guid>http://example.org/posts/%E6%B3%A8%E8%A7%A3requestbody/</guid>
+    <description><![CDATA[@RequestBody注解 作用： i) 该注解用于读取Request请求的body部分数据，使用系统默认配置的HttpMessageConverter进行解析，然后把相应的数据绑定到要返回的对象上；
+ii) 再把HttpMessageConverter返回的对象数据绑定到 controller种方法的参数上。
+大白话：将json格式的数据转为JavaBean对象。]]></description>
+</item>
+<item>
+    <title>注解@Data</title>
+    <link>http://example.org/posts/%E6%B3%A8%E8%A7%A3data/</link>
+    <pubDate>Mon, 15 Aug 2022 15:12:24 &#43;0800</pubDate>
+    <author>gqiang</author>
+    <guid>http://example.org/posts/%E6%B3%A8%E8%A7%A3data/</guid>
+    <description><![CDATA[注解@Data ​	@Data注解是lombok.jar包下的注解，该注解通常用在实体bean上，不需要写出set和get方法，但是具备实体bean所具备的方法，简化编程提高变成速度。注意：项目中一定要引入lombok.jar
+作用： 能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率 让代码变得简洁，不用过多的去关注相应的方法 属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等 使用 在maven中添加lombok的依赖 注在类上 ]]></description>
+</item>
+<item>
+    <title>注解@value</title>
+    <link>http://example.org/posts/%E6%B3%A8%E8%A7%A3value/</link>
+    <pubDate>Mon, 15 Aug 2022 15:12:12 &#43;0800</pubDate>
+    <author>gqiang</author>
+    <guid>http://example.org/posts/%E6%B3%A8%E8%A7%A3value/</guid>
+    <description><![CDATA[注解@value ​	@Value的作用是通过注解将常量、配置文件中的值、其他bean的属性值注入到变量中，作为变量的初始值。
+使用 （1）常量注入 例如：
+例1：@Value(&quot;normal&quot;)
+private String normal; // 注入普通字符串
+例2：@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)
+private Resource resourceFile; // 注入文件资源
+例3：@Value(&quot;http://www.baidu.com&quot;)
+private Resource testUrl; // 注入URL资源
+（2）bean属性、系统属性、表达式注入@Value(&quot;#{}&quot;) ​	bean属性注入需要注入者和被注入者属于同一个IOC容器，或者父子IOC容器关系，在同一个作用域内。
+例1：@Value(&quot;#{beanInject.another}&quot;)
+​	private String fromAnotherBean; // 注入其他Bean属性：注入beanInject对象的属性another
+例2：@Value(&quot;#{systemProperties['os.name']}&quot;)
+​	private String systemPropertiesName; // 注入操作系统属性
+例3：@Value(&quot;#{ T(java.lang.Math).random() * 100.0 }&quot;)
+​	private double randomNumber; //注入表达式结果
+（3）配置文件属性注入@Value(&quot;${}&quot;) ​	@Value(&quot;#{}&quot;)读取配置文件中的值，注入到变量中去。配置文件分为默认配置文件application.properties和自定义配置文件
+application.properties。application.properties在spring boot启动时默认加载此文件
+自定义属性文件。自定义属性文件通过@PropertySource加载。@PropertySource可以同时加载多个文件，也可以加载单个文件。如果相同第一个属性文件和第二属性文件存在相同key，则最后一个属性文件里的key启作用。加载文件的路径也可以配置变量，如下文的${anotherfile.configinject}，此值定义在第一个属性文件config.properties]]></description>
 </item>
 </channel>
 </rss>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>注解@value - Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="注解@value" />
+<meta property="og:description" content="注解@value ​	@Value的作用是通过注解将常量、配置文件中的值、其他bean的属性值注入到变量中，作为变量的初始值。
+使用 （1）常量注入 例如：
+例1：@Value(&quot;normal&quot;)
+private String normal; // 注入普通字符串
+例2：@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)
+private Resource resourceFile; // 注入文件资源
+例3：@Value(&quot;http://www.baidu.com&quot;)
+private Resource testUrl; // 注入URL资源
+（2）bean属性、系统属性、表达式注入@Value(&quot;#{}&quot;) ​	bean属性注入需要注入者和被注入者属于同一个IOC容器，或者父子IOC容器关系，在同一个作用域内。
+例1：@Value(&quot;#{beanInject.another}&quot;)
+​	private String fromAnotherBean; // 注入其他Bean属性：注入beanInject对象的属性another
+例2：@Value(&quot;#{systemProperties[&#39;os.name&#39;]}&quot;)
+​	private String systemPropertiesName; // 注入操作系统属性
+例3：@Value(&quot;#{ T(java.lang.Math).random() * 100.0 }&quot;)
+​	private double randomNumber; //注入表达式结果
+（3）配置文件属性注入@Value(&quot;${}&quot;) ​	@Value(&quot;#{}&quot;)读取配置文件中的值，注入到变量中去。配置文件分为默认配置文件application.properties和自定义配置文件
+application.properties。application.properties在spring boot启动时默认加载此文件
+自定义属性文件。自定义属性文件通过@PropertySource加载。@PropertySource可以同时加载多个文件，也可以加载单个文件。如果相同第一个属性文件和第二属性文件存在相同key，则最后一个属性文件里的key启作用。加载文件的路径也可以配置变量，如下文的${anotherfile.configinject}，此值定义在第一个属性文件config.properties" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-08-15T15:12:12+08:00" />
+<meta property="article:modified_time" content="2022-08-15T15:12:12+08:00" /><meta property="og:site_name" content="Amos&#39;s blog" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="注解@value"/>
+<meta name="twitter:description" content="注解@value ​	@Value的作用是通过注解将常量、配置文件中的值、其他bean的属性值注入到变量中，作为变量的初始值。
+使用 （1）常量注入 例如：
+例1：@Value(&quot;normal&quot;)
+private String normal; // 注入普通字符串
+例2：@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)
+private Resource resourceFile; // 注入文件资源
+例3：@Value(&quot;http://www.baidu.com&quot;)
+private Resource testUrl; // 注入URL资源
+（2）bean属性、系统属性、表达式注入@Value(&quot;#{}&quot;) ​	bean属性注入需要注入者和被注入者属于同一个IOC容器，或者父子IOC容器关系，在同一个作用域内。
+例1：@Value(&quot;#{beanInject.another}&quot;)
+​	private String fromAnotherBean; // 注入其他Bean属性：注入beanInject对象的属性another
+例2：@Value(&quot;#{systemProperties[&#39;os.name&#39;]}&quot;)
+​	private String systemPropertiesName; // 注入操作系统属性
+例3：@Value(&quot;#{ T(java.lang.Math).random() * 100.0 }&quot;)
+​	private double randomNumber; //注入表达式结果
+（3）配置文件属性注入@Value(&quot;${}&quot;) ​	@Value(&quot;#{}&quot;)读取配置文件中的值，注入到变量中去。配置文件分为默认配置文件application.properties和自定义配置文件
+application.properties。application.properties在spring boot启动时默认加载此文件
+自定义属性文件。自定义属性文件通过@PropertySource加载。@PropertySource可以同时加载多个文件，也可以加载单个文件。如果相同第一个属性文件和第二属性文件存在相同key，则最后一个属性文件里的key启作用。加载文件的路径也可以配置变量，如下文的${anotherfile.configinject}，此值定义在第一个属性文件config.properties"/>
+<meta name="application-name" content="Amos&#39;s blog">
+<meta name="apple-mobile-web-app-title" content="Amos&#39;s blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" /><link rel="prev" href="http://example.org/posts/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" /><link rel="next" href="http://example.org/posts/%E6%B3%A8%E8%A7%A3data/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "注解@value",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/%E6%B3%A8%E8%A7%A3value\/"
+        },"genre": "posts","wordcount":  57 ,
+        "url": "http:\/\/example.org\/posts\/%E6%B3%A8%E8%A7%A3value\/","datePublished": "2022-08-15T15:12:12+08:00","dateModified": "2022-08-15T15:12:12+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "gqiang"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Just Do It">Amos&#39;s blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Just Do It">Amos&#39;s blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">注解@value</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-15">2022-08-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;57 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#注解value">注解@value</a>
+      <ul>
+        <li><a href="#使用">使用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="注解value">注解@value</h2>
+<p>​	@Value的作用是通过注解将常量、配置文件中的值、其他bean的属性值注入到变量中，作为变量的初始值。</p>
+<h3 id="使用">使用</h3>
+<h4 id="1常量注入">（1）常量注入</h4>
+<p>例如：</p>
+<p>例1：<code>@Value(&quot;normal&quot;)</code></p>
+<p><code>private String normal; // 注入普通字符串</code></p>
+<p>例2：<code>@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)</code></p>
+<p><code>private Resource resourceFile; // 注入文件资源</code></p>
+<p>例3：<code>@Value(&quot;http://www.baidu.com&quot;)</code></p>
+<p><code>private Resource testUrl; // 注入URL资源</code></p>
+<h4 id="2bean属性系统属性表达式注入value">（2）bean属性、系统属性、表达式注入@Value(&quot;#{}&quot;)</h4>
+<p>​	bean属性注入需要注入者和被注入者属于同一个IOC容器，或者父子IOC容器关系，在同一个作用域内。</p>
+<p>例1：<code>@Value(&quot;#{beanInject.another}&quot;)</code></p>
+<p>​	<code>private String fromAnotherBean; // 注入其他Bean属性：注入beanInject对象的属性another</code></p>
+<p>例2：<code>@Value(&quot;#{systemProperties['os.name']}&quot;)</code></p>
+<p>​	<code>private String systemPropertiesName; // 注入操作系统属性</code></p>
+<p>例3：<code>@Value(&quot;#{ T(java.lang.Math).random() * 100.0 }&quot;)</code></p>
+<p>​	<code>private double randomNumber; //注入表达式结果</code></p>
+<h4 id="3配置文件属性注入value">（3）配置文件属性注入@Value(&quot;${}&quot;)</h4>
+<p>​	@Value(&quot;#{}&quot;)读取配置文件中的值，注入到变量中去。配置文件分为默认配置文件application.properties和自定义配置文件</p>
+<ul>
+<li>
+<p>application.properties。application.properties在spring boot启动时默认加载此文件</p>
+</li>
+<li>
+<p>自定义属性文件。自定义属性文件通过@PropertySource加载。@PropertySource可以同时加载多个文件，也可以加载单个文件。如果相同第一个属性文件和第二属性文件存在相同key，则最后一个属性文件里的key启作用。加载文件的路径也可以配置变量，如下文的${anotherfile.configinject}，此值定义在第一个属性文件config.properties</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2022-08-15</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" data-title="注解@value"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" data-title="注解@value"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" data-title="注解@value"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://example.org/posts/%E6%B3%A8%E8%A7%A3value/" data-title="注解@value"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" class="prev" rel="prev" title="工厂模式"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>工厂模式</a>
+            <a href="/posts/%E6%B3%A8%E8%A7%A3data/" class="next" rel="next" title="注解@Data">注解@Data<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">gqiang</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

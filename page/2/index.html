@@ -8,7 +8,7 @@
         <title>Just Do It</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Just Do It" />
 <meta property="og:description" content="This is my cool site" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/" /><meta property="og:site_name" content="My cool site" />
+<meta property="og:url" content="http://example.org/" /><meta property="og:site_name" content="Amos&#39;s blog" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Just Do It"/>
@@ -59,28 +59,86 @@
 </header><main class="main">
                 <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-subtitle"><div id="id-1" class="typeit"></div></div><div class="links"></div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/hashmap/">HashMap</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-07-30">2022-07-30</time></span></div><div class="content">学习计划之02HashMap 一、WHAT ​	HashMap是基于哈希表的Map接口的非同步实现，此实现提供所有可选的映射操作，并允许使用null值和null键。此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
-​	在Java中数组和链表是典型的数据存储结构。
-1.数组
-​	数组的存储区间连续，有点是随机访问性强，查找速度快，缺点是插入和删除速度快，内存利用率高且大小不固定，比较灵活，缺点是不能随机查找，查找速度慢。
-2.链表
-​	链表区间离散，优点是插入删除速度快，内存利用率高，大小不固定，比较灵活，缺点是不能随即查找，查找速度慢。
-3.HashMap
-​	哈希表也叫散列表，是一种神奇的结构，最大的特点就是快。在Java1.7之前是数组+链表，之后是数组+链表+红黑树。如果链表
-4.HashMap的节点
-​	HashMap是一个集合，键值对的集合，源码中每个节点用&lt;K、V&gt;表示。
-​	final int hash;
-​	final K key;
-​	V value;
-​	Node&lt;K,V&gt; next;
-​	Node是一个内部类，智利的key为键，value为值，next指向下一个元素，可以看出HashMap中的元素不是一个简单的键值对，还包含下一个元素的引用。
-二、WHY ​	在HashMap底层使用数组+链表+红黑树的结构完美的解决了数组和链表的问题，是的查询、插入、删除的效率都很高。
-​	在jdk1.8中，如果链表长度大于8且节点数组长度大于64时，则会将链表转为红黑树。
-三、HOW 1.put()方法
-将K、V封装到Node对象当中； 利用hashcode()方法得出k的hash值； 通过哈希函数将hash值转换为数组的下标； 如果下标没有任何元素，就把Node添加到这个位置，如果下标对应位置上有链表，就将k与链表上的每个节点进行equal，如果返回是false，那这个新的节点会被添加到末尾，吐过有一个返回true，则这个节点的value将会被覆盖。 2.get()方法
-先调用hashCode算法得出k的哈希值，并通过哈希算法转换为数组的下标； 通过数组下标快速定位到某个位置上，如果位置上什么都没有，就返回null； 如果这个位置上有单向链表，那么就将k与单向链表上的每个节点的k进行equal，吐过返回false，就返回null；如果返回true，则返回该节点value值。 </div><div class="post-footer">
-        <a href="/posts/hashmap/">Read More</a></div>
+        <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">设计模式之设计原则</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-21">2022-08-21</time></span></div><div class="content">设计原则 在软件开发中，为了提高软件系统的可维护性和可复用性，增加软件的可扩展性和灵活性，程序员要尽量根据6条原则来开发程序，从而提高软件开发效率、节约软件开发成本和维护成本。
+1 开闭原则 对扩展开放，对修改关闭。在程序需要进行拓展的时候，不能去修改原有的代码，实现一个热插拔的效果。简言之，是为了使程序的扩展性好，易于维护和升级。
+想要达到这样的效果，我们需要使用接口和抽象类。
+因为抽象灵活性好，适应性广，只要抽象的合理，可以基本保持软件架构的稳定。而软件中易变的细节可以从抽象派生来的实现类来进行扩展，当软件需要发生变化时，只需要根据需求重新派生一个实现类来扩展就可以了。
+下面以 搜狗输入法 的皮肤为例介绍开闭原则的应用。
+【例】搜狗输入法 的皮肤设计。
+分析：搜狗输入法 的皮肤是输入法背景图片、窗口颜色和声音等元素的组合。用户可以根据自己的喜爱更换自己的输入法的皮肤，也可以从网上下载新的皮肤。这些皮肤有共同的特点，可以为其定义一个抽象类（AbstractSkin），而每个具体的皮肤（DefaultSpecificSkin和HeimaSpecificSkin）是其子类。用户窗体可以根据需要选择或者增加新的主题，而不需要修改原代码，所以它是满足开闭原则的。
+2 里氏代换原则 里氏代换原则是面向对象设计的基本原则之一。
+里氏代换原则：任何基类可以出现的地方，子类一定可以出现。通俗理解：子类可以扩展父类的功能，但不能改变父类原有的功能。换句话说，子类继承父类时，除添加新的方法完成新增功能外，尽量不要重写父类的方法。
+如果通过重写父类的方法来完成新的功能，这样写起来虽然简单，但是整个继承体系的可复用性会比较差，特别是运用多态比较频繁时，程序运行出错的概率会非常大。
+下面看一个里氏替换原则中经典的一个例子
+【例】正方形不是长方形。
+在数学领域里，正方形毫无疑问是长方形，它是一个长宽相等的长方形。所以，我们开发的一个与几何图形相关的软件系统，就可以顺理成章的让正方形继承自长方形。
+代码如下：
+长方形类（Rectangle）：
+public class Rectangle { private double length; private double width; public double getLength() { return length; } public void setLength(double length) { this.length = length; } public double getWidth() { return width; } public void setWidth(double width) { this.width = width; } } 正方形（Square）：
+由于正方形的长和宽相同，所以在方法setLength和setWidth中，对长度和宽度都需要赋相同值。
+public class Square extends Rectangle { public void setWidth(double width) { super.</div><div class="post-footer">
+        <a href="/posts/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3requestbody/">注解@RequestBody</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-15">2022-08-15</time></span></div><div class="content">@RequestBody注解 作用： i) 该注解用于读取Request请求的body部分数据，使用系统默认配置的HttpMessageConverter进行解析，然后把相应的数据绑定到要返回的对象上；
+ii) 再把HttpMessageConverter返回的对象数据绑定到 controller种方法的参数上。
+大白话：将json格式的数据转为JavaBean对象。</div><div class="post-footer">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3requestbody/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3data/">注解@Data</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-15">2022-08-15</time></span></div><div class="content">注解@Data ​	@Data注解是lombok.jar包下的注解，该注解通常用在实体bean上，不需要写出set和get方法，但是具备实体bean所具备的方法，简化编程提高变成速度。注意：项目中一定要引入lombok.jar
+作用： 能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率 让代码变得简洁，不用过多的去关注相应的方法 属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等 使用 在maven中添加lombok的依赖 注在类上 </div><div class="post-footer">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3data/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3value/">注解@value</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-15">2022-08-15</time></span></div><div class="content">注解@value ​	@Value的作用是通过注解将常量、配置文件中的值、其他bean的属性值注入到变量中，作为变量的初始值。
+使用 （1）常量注入 例如：
+例1：@Value(&quot;normal&quot;)
+private String normal; // 注入普通字符串
+例2：@Value(&quot;classpath:com/hry/spring/configinject/config.txt&quot;)
+private Resource resourceFile; // 注入文件资源
+例3：@Value(&quot;http://www.baidu.com&quot;)
+private Resource testUrl; // 注入URL资源
+（2）bean属性、系统属性、表达式注入@Value(&quot;#{}&quot;) ​	bean属性注入需要注入者和被注入者属于同一个IOC容器，或者父子IOC容器关系，在同一个作用域内。
+例1：@Value(&quot;#{beanInject.another}&quot;)
+​	private String fromAnotherBean; // 注入其他Bean属性：注入beanInject对象的属性another
+例2：@Value(&quot;#{systemProperties['os.name']}&quot;)
+​	private String systemPropertiesName; // 注入操作系统属性
+例3：@Value(&quot;#{ T(java.lang.Math).random() * 100.0 }&quot;)
+​	private double randomNumber; //注入表达式结果
+（3）配置文件属性注入@Value(&quot;${}&quot;) ​	@Value(&quot;#{}&quot;)读取配置文件中的值，注入到变量中去。配置文件分为默认配置文件application.properties和自定义配置文件
+application.properties。application.properties在spring boot启动时默认加载此文件
+自定义属性文件。自定义属性文件通过@PropertySource加载。@PropertySource可以同时加载多个文件，也可以加载单个文件。如果相同第一个属性文件和第二属性文件存在相同key，则最后一个属性文件里的key启作用。加载文件的路径也可以配置变量，如下文的${anotherfile.configinject}，此值定义在第一个属性文件config.properties</div><div class="post-footer">
+        <a href="/posts/%E6%B3%A8%E8%A7%A3value/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">工厂模式</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-15">2022-08-15</time></span></div><div class="content">工厂模式 ​	定义一个创建对象的接口，让其子类自己决定实例化哪一个实体对象，工厂模式使其创建过程延迟到子类进行。
+​	大白话：首先创建一个接口，创建多个子类实现该接口。然后创建一个工厂类，通过工厂类对用户的输入进行选择，返回实体对象类赋值给新建的接口对象（多态）。
+一、简单工厂模式 使用 //创建工厂
+ShapeFactory shapeFactory = new ShapeFactory();
+//在工厂中利用输入参数选择具体的实体对象，并将该对象返回给Shape接口
+Shape shape = shapeFactory.getShape(&quot;CIRCLE&quot;);
+创建过程 第一步
+创建接口
+public interface Shape { void draw(); }
+第二步
+//Rectangle类
+public class Rectangle implements Shape {
+@Override public void draw() { System.out.println(&quot;Inside Rectangle::draw() method.&quot;); } }
+//Square类 public class Square implements Shape {
+@Override public void draw() { System.out.println(&quot;Inside Square::draw() method.&quot;); } }
+//Square类 public class Square implements Shape {</div><div class="post-footer">
+        <a href="/posts/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">Read More</a></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/sql%E8%AF%AD%E8%A8%80/">SQL语言学习</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>gqiang</a></span>&nbsp;<span class="post-publish">published on <time datetime="2022-08-13">2022-08-13</time></span></div><div class="content">SQL语言(未完待续) 一、SQL基础 1.SELECT SELECT column_name,column_name FROM table_name;
+SELECT * FROM table_name;
+SELECT DISTINCT column_name,column_name FROM table_name; 返回列中不同的值
+2.WHERE SELECT column_name,column_name FROM table_name WHERE column_name operator value;
+WHERE用于提取那些满足条件的记录；
+3.AND&amp;OR 4.ORDER BY 5.INSERTE INTO INSERT INTO table_name VALUES (value1,value2,value3,&hellip;); INSERT INTO table_name (column1,column2,column3,&hellip;) VALUES (value1,value2,value3,&hellip;); 6.UPDATA UPDATE table_name SET column1=value1,column2=value2,&hellip; WHERE some_column=some_value; 7.DELETE DELETE FROM table_name WHERE some_column=some_value; 8.CREATE DATABASE 9.CREATE TABLE 1O.SQL约束 NOT NULL UNIQUE PRIMARY KEY FOREIGN KEY CHECK DEFAULT 设置默认值 11.</div><div class="post-footer">
+        <a href="/posts/sql%E8%AF%AD%E8%A8%80/">Read More</a></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -88,6 +146,14 @@
                 </li><li class="page-item active">
                     <span class="page-link">
                         <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
